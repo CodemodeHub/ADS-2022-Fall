@@ -144,6 +144,7 @@ struct LinkedList
 			cout << cur->val << " ";
 			cur = cur->next;
 		}
+		cout << endl;
 		// while (cur->next) {
 
 		// }
@@ -153,13 +154,21 @@ struct LinkedList
 int main()
 {
 	LinkedList *ll = new LinkedList();
+	LinkedList *ll2 = new LinkedList();
 	// cout << ll->size << endl;
 	ll->addAtHead(10);
 	ll->addAtTail(200);
 	ll->addAtHead(40);
 	ll->addAtHead(80);
 	ll->addAtIndex(2, 1337);
+	ll2->head = ll->tail;
+	ll2->tail = ll->tail;
+	ll->size = 1;
+	ll2->addAtTail(500);
+	ll2->addAtTail(500);
+	ll2->addAtTail(500);
 	ll->printLL();
+	ll2->printLL();
 
 	return 0;
 }
