@@ -62,6 +62,25 @@ struct LinkedList
 		}
 	}
 
+	void addAtIndex(int index, int val) {
+		if (index > this->size) {
+			return;
+		} else if (index == 0) {
+			this->addAtHead(val);
+		} else if (index == this->size) {
+			this->addAtTail(val);
+		} else {
+			ListNode *temp = new ListNode(val);
+			ListNode *cur = this->head;
+			for (int i = 1; i < index; i++) {
+				cur = cur->next;
+			}
+			temp->next = cur->next;
+			cur->next = temp;
+			this->size++;
+		}
+	}
+
 };
 
 int main()
