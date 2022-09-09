@@ -81,6 +81,17 @@ struct LinkedList
 		}
 	}
 
+	int get(int index) {
+		if (index < 0 || index >= this->size) {
+			return -1;
+		}
+		ListNode *cur = this->head;
+		for (int i = 0; i < index; i++) {
+			cur = cur->next;
+		}
+		return cur->val;
+	}
+
 };
 
 int main()
