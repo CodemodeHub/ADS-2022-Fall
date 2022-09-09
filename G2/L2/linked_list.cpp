@@ -49,6 +49,19 @@ struct LinkedList
 		}
 	}
 
+	void addAtTail(int val) {
+		this->size++;
+		ListNode *temp = new ListNode(val);
+		if (this->head == nullptr)
+		{
+			this->head = temp;
+			this->tail = temp;
+		} else {
+			this->tail->next = temp;
+			this->tail = temp;
+		}
+	}
+
 };
 
 int main()
