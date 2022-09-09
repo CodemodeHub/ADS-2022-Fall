@@ -140,7 +140,7 @@ struct LinkedList
 
 	void printLL() {
 		ListNode *cur = this->head;
-		while (cur->next != nullptr) {
+		while (cur != nullptr) {
 			cout << cur->val << " ";
 			cur = cur->next;
 		}
@@ -155,15 +155,11 @@ int main()
 	LinkedList *ll = new LinkedList();
 	// cout << ll->size << endl;
 	ll->addAtHead(10);
+	ll->addAtTail(200);
 	ll->addAtHead(40);
 	ll->addAtHead(80);
-
-	ListNode *cur = ll->head;
-	while (cur != nullptr)
-	{
-		cout << cur->val << " ";
-		cur = cur->next;
-	}
+	ll->addAtIndex(2, 1337);
+	ll->printLL();
 
 	return 0;
 }
