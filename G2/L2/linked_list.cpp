@@ -25,13 +25,46 @@ struct ListNode
 	}
 };
 
+struct LinkedList
+{
+	int size;
+	ListNode *head;
+	ListNode *tail;
+
+	LinkedList() {
+		this->size = 0;
+		this->head = nullptr;
+		this->tail = nullptr;
+	}
+
+	void addAtHead(int val) {
+		this->size++;
+		ListNode *temp = new ListNode(val);
+		if (this->head == nullptr) {
+			this->head = temp;
+			this->tail = temp;
+		} else {
+			temp->next = this->head;
+			this->head = temp;
+		}
+	}
+
+};
+
 int main()
 {
+	LinkedList* ll = new LinkedList();
+	// cout << ll->size << endl;
+	ll->addAtHead(10);
+	ll->addAtHead(40);
+	ll->addAtHead(80);
 
-	ListNode *node1 = new ListNode(10);
-	ListNode *node2 = new ListNode(20, node1);
-	cout << node1->val << endl;
-	cout << node2->val << " " << node2->next->val << endl;
+	ListNode *cur = ll->head;
+	while (cur != nullptr)
+	{
+		cout << cur->val << " ";
+		cur = cur->next;
+	}
 
 	return 0;
 }
