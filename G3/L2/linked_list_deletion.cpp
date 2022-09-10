@@ -149,5 +149,11 @@ int main()
 	ll->printLL();
 	ll->addAtIndex(2, 99);
 	ll->printLL();
+	ll->deleteAtIndex(0);
+	ll->printLL();
+	ll->deleteAtIndex(ll->size - 1);
+	ll->printLL();
+	ll->deleteAtIndex(1);
+	ll->printLL();
 	return 0;
 }
