@@ -23,8 +23,9 @@ struct ListNode {
 
 int main()
 {
-	ListNode *myNode1 = new ListNode();
+	ListNode *myNode1 = new ListNode(22);
 	ListNode *myNode2 = new ListNode(5, myNode1);
-	cout << myNode1->val;
+	cout << myNode1->val << " " << myNode2->val << endl;
+	cout << myNode2->next->val;
 	return 0;
 }
