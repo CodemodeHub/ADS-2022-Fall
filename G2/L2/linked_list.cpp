@@ -133,8 +133,10 @@ struct LinkedList
 			for (int i = 0; i < index - 1; i++) {
 				cur = cur->next;
 			}
+			ListNode *toDel = cur->next;
 			cur->next = cur->next->next;
 			this->size--;
+			delete (toDel);
 		}
 	}
 
