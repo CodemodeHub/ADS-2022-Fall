@@ -38,6 +38,17 @@ struct LinkedList
 		this->tail = nullptr;
 	}
 
+	int get(int index) {
+		if (index < 0 || index >= this->size) {
+			throw std::invalid_argument("Index out of range");
+		}
+		ListNode *cur = this->head;
+		for (int i = 0; i < index; i++) {
+			cur = cur->next;
+		}
+		return cur->val;
+	}
+
 	void addAtHead(int val)
 	{
 		ListNode *newNode = new ListNode(val);
@@ -74,7 +85,7 @@ struct LinkedList
 	{
 		if (index < 0 || index > this->size)
 		{
-			return;
+			throw std::invalid_argument("Index out of range");
 		}
 		if (index == 0)
 		{
@@ -112,7 +123,7 @@ struct LinkedList
 	void deleteAtIndex(int index) {
 		if (index < 0 || index > this->size)
 		{
-			return;
+			throw std::invalid_argument("Index out of range");
 		}
 		if (index == 0) {
 			this->head = this->head->next;
@@ -155,5 +166,8 @@ int main()
 	ll->printLL();
 	ll->deleteAtIndex(1);
 	ll->printLL();
+	cout << ll->get(0);
+	cout << ll->get(-1);
+	cout << ll->get(3);
 	return 0;
 }
