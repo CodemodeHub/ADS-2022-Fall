@@ -82,6 +82,38 @@ struct LinkedList {
             return current->value;
         }
     }
+
+    void deleteByValue(int value) {
+        this->size--;
+        ListNode* current = this->head;
+        while(current->next->value != value) {
+            current = current->next;
+        }
+        current->next = current->next->next;
+    }
+
+    void deleteAtIndex(int index) {
+        if(index >= this->size || index < 0) {
+            cout<<"Error";
+            return ;
+        }else if(index == 0) {
+            this->size--;
+            head = head->next;
+        } else if(index == this->size - 1) {
+            this->size--;
+            ListNode* current = this->head;
+            while(current->next != this->tail) 
+                current = current->next;
+            current->next = nullptr;
+            this->tail = current;
+        } else {
+            this->size--;
+            ListNode* current = this->head;
+            for(int i = 0; i < index - 1; i++)
+                current = current->next;
+            current->next = current->next->next;
+        }
+    }
     
     void print() {
         ListNode* current = head;
@@ -99,8 +131,10 @@ int main() {
     ll->addAtIndex(1, 3);
     ll->addAtIndex(1 ,4);
     ll->addAtTail(1);
+    ll->addAtTail(4);
+    ll->deleteByValue(4);
+    ll->deleteAtIndex(2);
     ll->print();
-    cout<<ll->get(3)<<endl;
-    cout<<ll->get(1)<<endl;
+    // 5 3 2 1 4
     return 0;
 }
