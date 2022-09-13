@@ -150,18 +150,18 @@ struct DoublyLinkedList
 		}
 	}
 
-	void printLL()
+	void print()
 	{
 		ListNode *cur = this->head;
 		while (cur != nullptr)
 		{
-			cout << cur->val << " ";
+			cout << cur->val << "->";
 			cur = cur->next;
 		}
-		cout << endl;
+		cout << "nullptr" << endl;
 	}
 
-	void printLLReverse() {
+	void printReverse() {
 		ListNode *cur = this->tail;
 		while (cur != nullptr) {
 			cout << cur->val << " ";
@@ -171,8 +171,40 @@ struct DoublyLinkedList
 	}
 };
 
+ListNode *deleteDuplicates(ListNode *head)
+{
+	if (head == nullptr)
+		return nullptr;
+	if (head->next == nullptr)
+		return head;
+	ListNode *prev = head, *cur = head->next;
+	while (cur != nullptr)
+	{
+		if (cur->val == prev->val)
+		{
+			prev->next = cur->next;
+			cur = cur->next;
+			continue;
+		}
+		prev = cur;
+		cur = cur->next;
+	}
+	return head;
+}
+
 int main()
 {
-
+	DoublyLinkedList *dll = new DoublyLinkedList();
+	int n, m;
+	cin >> n;
+	while (n--) {
+		cin >> m;
+		dll->addAtTail(m);
+	}
+	dll->head = deleteDuplicates(dll->head);
+	dll->print();
 	return 0;
 }
+
+// 7
+// 2 3 3 11 11 44 55
