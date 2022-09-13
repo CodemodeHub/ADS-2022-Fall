@@ -125,29 +125,28 @@ struct DoublyLinkedList
 		if (index == 0)
 		{
 			this->head = this->head->next;
+			// delete (this->head->prev);
+			this->head->prev = nullptr;
 			this->size--;
 		}
 		else if (index == this->size - 1)
 		{
-			ListNode *cur = this->head;
-			while (cur->next != this->tail)
-			{
-				cur = cur->next;
-			}
-			this->tail = cur;
+			this->tail = this->tail->prev;
+			this->tail->next = nullptr;
 			this->size--;
 		}
 		else if (index > 0 && index < this->size)
 		{
 			ListNode *cur = this->head;
-			for (int i = 0; i < index - 1; i++)
+			for (int i = 0; i < index; i++)
 			{
 				cur = cur->next;
 			}
-			ListNode *toDel = cur->next;
-			cur->next = cur->next->next;
+			ListNode *prevv = cur->prev;
+			ListNode *nextt = cur->next;
+			prevv->next = nextt;
+			nextt->prev = prevv;
 			this->size--;
-			delete (toDel);
 		}
 	}
 
@@ -158,6 +157,15 @@ struct DoublyLinkedList
 		{
 			cout << cur->val << " ";
 			cur = cur->next;
+		}
+		cout << endl;
+	}
+
+	void printLLReverse() {
+		ListNode *cur = this->tail;
+		while (cur != nullptr) {
+			cout << cur->val << " ";
+			cur = cur->prev;
 		}
 		cout << endl;
 	}
