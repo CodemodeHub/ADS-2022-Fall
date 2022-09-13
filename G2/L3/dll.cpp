@@ -71,13 +71,14 @@ struct DoublyLinkedList
 		else
 		{
 			this->tail->next = temp;
+			temp->prev = this->tail;
 			this->tail = temp;
 		}
 	}
 
 	void addAtIndex(int index, int val)
 	{
-		if (index > this->size)
+		if (index < 0 || index > this->size)
 		{
 			return;
 		}
@@ -98,7 +99,9 @@ struct DoublyLinkedList
 				cur = cur->next;
 			}
 			temp->next = cur->next;
+			cur->next->prev = temp; // temp->next->prev = temp;
 			cur->next = temp;
+			temp->prev = cur;
 			this->size++;
 		}
 	}
