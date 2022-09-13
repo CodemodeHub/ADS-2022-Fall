@@ -110,7 +110,7 @@ struct DoublyLinkedList
 	{
 		if (index < 0 || index >= this->size)
 		{
-			return -1;
+			throw std::invalid_argument("Index out of range");
 		}
 		ListNode *cur = this->head;
 		for (int i = 0; i < index; i++)
