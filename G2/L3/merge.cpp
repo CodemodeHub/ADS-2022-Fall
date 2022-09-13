@@ -11,41 +11,51 @@
 class Solution
 {
 public:
-	ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
+	ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
 	{
-		if (!l1)
-			return l2;
-		if (!l2)
-			return l1;
-		ListNode *head = l1;
-		if (l1->val < l2->val)
+		if (list1 == nullptr)
 		{
-			l1 = l1->next;
+			return list2;
+		}
+		if (list2 == nullptr)
+		{
+			return list1;
+		}
+		ListNode *head;
+		if (list1->val <= list2->val)
+		{
+			head = list1;
+			list1 = list1->next;
 		}
 		else
 		{
-			head = l2;
-			l2 = l2->next;
+			head = list2;
+			list2 = list2->next;
 		}
 		ListNode *cur = head;
-		while (l1 && l2)
+		while (list1 != nullptr && list2 != nullptr)
 		{
-			if (l1->val < l2->val)
+			if (list1->val <= list2->val)
 			{
-				cur->next = l1;
-				l1 = l1->next;
+				cur->next = list1;
+				list1 = list1->next;
 			}
 			else
 			{
-				cur->next = l2;
-				l2 = l2->next;
+				cur->next = list2;
+				list2 = list2->next;
 			}
 			cur = cur->next;
 		}
-		if (!l1)
-			cur->next = l2;
-		else
-			cur->next = l1;
+		if (list1 == nullptr)
+		{
+			cur->next = list2;
+		}
+		else if (list2 == nullptr)
+		{
+			cur->next = list1;
+		}
+
 		return head;
 	}
 };
