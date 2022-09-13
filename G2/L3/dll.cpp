@@ -35,7 +35,7 @@ struct DoublyLinkedList
 	ListNode *head;
 	ListNode *tail;
 
-	LinkedList()
+	DoublyLinkedList()
 	{
 		this->size = 0;
 		this->head = nullptr;
@@ -54,6 +54,7 @@ struct DoublyLinkedList
 		else
 		{
 			temp->next = this->head;
+			this->head->prev = temp;
 			this->head = temp;
 		}
 	}
