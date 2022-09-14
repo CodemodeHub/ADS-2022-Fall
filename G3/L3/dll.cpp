@@ -29,13 +29,13 @@ struct ListNode
 	}
 };
 
-struct LinkedList
+struct DoublyLinkedList
 {
 	int size;
 	ListNode *head;
 	ListNode *tail;
 
-	LinkedList()
+	DoublyLinkedList()
 	{
 		this->size = 0;
 		this->head = nullptr;
@@ -131,6 +131,10 @@ struct LinkedList
 		}
 		cout << endl;
 	}
+	
+	void printReverse() {
+		
+	}
 
 	void deleteAtIndex(int index)
 	{
@@ -141,16 +145,13 @@ struct LinkedList
 		if (index == 0)
 		{
 			this->head = this->head->next;
+			this->head->prev = nullptr;
+			// delete (this->head->prev);
 		}
 		else if (index == this->size - 1)
 		{
-			ListNode *cur = this->head;
-			while (cur->next != this->tail)
-			{
-				cur = cur->next;
-			}
-			cur->next = nullptr;
-			this->tail = cur;
+			this->tail = this->tail->prev;
+			this->tail->next = nullptr;
 		}
 		else
 		{
@@ -159,6 +160,11 @@ struct LinkedList
 			{
 				cur = cur->next;
 			}
+			// ListNode *prevv = cur->prev;
+			// ListNode *nextt = cur->next;
+			// prevv->next = nextt;
+			// nextt->prev = prevv;
+			cur->next->next->prev = cur;
 			cur->next = cur->next->next;
 		}
 		this->size--;
@@ -167,6 +173,16 @@ struct LinkedList
 
 int main()
 {
+	DoublyLinkedList dll;
+	int n, m;
+	cin >> n;
+	while(n--) {
+		cin >> m;
+		dll.push_back(m);
+	}
+	dll.print();
 
 	return 0;
 }
+// 5
+// 3 4 7 -2 4
