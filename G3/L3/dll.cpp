@@ -133,7 +133,12 @@ struct DoublyLinkedList
 	}
 	
 	void printReverse() {
-		
+		ListNode *cur = this->tail;
+		while (cur) {
+			cout << cur->val << " ";
+			cur = cur->prev;
+		}
+		cout << endl;
 	}
 
 	void deleteAtIndex(int index)
@@ -181,6 +186,7 @@ int main()
 		dll.push_back(m);
 	}
 	dll.print();
+	dll.printReverse();
 
 	return 0;
 }
