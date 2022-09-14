@@ -5,22 +5,26 @@ struct ListNode
 {
 	int val;
 	ListNode *next;
+	ListNode *prev;
 
 	ListNode()
 	{
 		this->val = 0;
 		this->next = nullptr; // NULL, if this doesnt work
+		this->prev = nullptr; // NULL, if this doesnt work
 	}
 
 	ListNode(int val)
 	{
 		this->val = val;
 		this->next = nullptr;
+		this->prev = nullptr;
 	}
 
-	ListNode(int val, ListNode *next)
+	ListNode(int val, ListNode *prev, ListNode *next)
 	{
 		this->val = val;
+		this->prev = prev;
 		this->next = next;
 	}
 };
@@ -52,7 +56,7 @@ struct LinkedList
 		return cur->val;
 	}
 
-	void addAtHead(int val)
+	void push_front(int val)
 	{
 		ListNode *newNode = new ListNode(val);
 		if (this->size == 0)
@@ -63,12 +67,13 @@ struct LinkedList
 		else
 		{
 			newNode->next = this->head;
+			this->head->prev = newNode;
 			this->head = newNode;
 		}
 		this->size++;
 	}
 
-	void addAtTail(int val)
+	void push_back(int val)
 	{
 		ListNode *newNode = new ListNode(val);
 		if (this->size == 0)
@@ -79,12 +84,13 @@ struct LinkedList
 		else
 		{
 			this->tail->next = newNode;
+			newNode->prev = this->tail;
 			this->tail = newNode;
 		}
 		this->size++;
 	}
 
-	void addAtIndex(int index, int val)
+	void insert(int index, int val)
 	{
 		if (index < 0 || index > this->size)
 		{
@@ -92,11 +98,11 @@ struct LinkedList
 		}
 		if (index == 0)
 		{
-			this->addAtHead(val);
+			this->push_front(val);
 		}
-		else if (index == this->size - 1)
+		else if (index == this->size)
 		{
-			this->addAtTail(val);
+			this->push_back(val);
 		}
 		else
 		{
@@ -106,13 +112,16 @@ struct LinkedList
 			{
 				cur = cur->next;
 			}
-			newNode->next = cur->next;
+			ListNode *nextt = cur->next;
 			cur->next = newNode;
+			newNode->prev = cur;
+			newNode->next = nextt;
+			nextt->prev = newNode;
 			this->size++;
 		}
 	}
 
-	void printLL()
+	void print()
 	{
 		ListNode *cur = this->head;
 		while (cur != nullptr)
@@ -158,27 +167,6 @@ struct LinkedList
 
 int main()
 {
-	LinkedList *ll = new LinkedList();
-	ll->addAtHead(5);
-	ll->printLL();
-	ll->addAtHead(2);
-	ll->printLL();
-	ll->addAtTail(4);
-	ll->printLL();
-	ll->addAtTail(8);
-	ll->printLL();
-	ll->addAtIndex(0, 100);
-	ll->printLL();
-	ll->addAtIndex(2, 99);
-	ll->printLL();
-	ll->deleteAtIndex(0);
-	ll->printLL();
-	ll->deleteAtIndex(ll->size - 1);
-	ll->printLL();
-	ll->deleteAtIndex(1);
-	ll->printLL();
-	cout << ll->get(0);
-	cout << ll->get(-1);
-	cout << ll->get(3);
+
 	return 0;
 }
