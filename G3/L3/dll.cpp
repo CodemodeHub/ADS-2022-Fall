@@ -194,9 +194,9 @@ struct DoublyLinkedList
 		head->prev = nullptr;
 	}
 
-	// void shiftRight(int steps) {
+	void shiftRight(int steps) {
 
-	// }
+	}
 };
 
 int main()
@@ -208,6 +208,7 @@ int main()
 		cin >> m;
 		dll.push_back(m);
 	}
+	dll.print();
 	dll.shiftLeft(3);
 	dll.print();
 
