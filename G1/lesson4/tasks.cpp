@@ -74,8 +74,31 @@ int calPoints(vector<string>& ops) {
     return result;
 }
 
+int postfix(vector<string> ops) {
+    Stack* stack = new Stack();
+    for(int i = 0; i < ops.size(); i++) {
+        string operation = ops[i];
+        if(operation == "+") {
+            int first = stack->pop();
+            int second = stack->pop();
+            stack->push(first + second);
+        } else if(operation == "-") {
+            int first = stack->pop();
+            int second = stack->pop();
+            stack->push(second - first);
+        } else if(operation == "*") {
+            int first = stack->pop();
+            int second = stack->pop();
+            stack->push(second * first);
+        } else {
+            stack->push(stoi(operation));
+        }
+    }
+    return stack->pop();
+}
+
 int main() {
-    vector<string> input = {"5", "2", "C", "D", "+"};
-    cout<<calPoints(input)<<endl;
+    vector<string> input = {"8", "9", "5", "+", "4", "*", "+"};
+    cout<<postfix(input)<<endl;
     return 0;
 }
