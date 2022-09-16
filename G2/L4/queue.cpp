@@ -12,38 +12,49 @@ struct Node
 	}
 };
 
-struct Queue {
+struct Queue
+{
 	Node *beti;
 	Node *koteni;
 	int size;
 
-	Queue() {
+	Queue()
+	{
 		beti = nullptr;
 		koteni = nullptr;
 		size = 0;
 	}
 
-	void pop() {
-		if (this->isEmpty()) {
+	void pop()
+	{
+		if (this->isEmpty())
+		{
 			throw std::invalid_argument("queue is empty");
-		} else {
+		}
+		else
+		{
 			Node *toDel = beti;
 			beti = beti->next;
 			delete (toDel);
+			size--;
 		}
-		size--;
 	}
 
-	int front() {
+	int front()
+	{
 		return beti->val;
 	}
 
-	void push(int val) {
-		if (this->isEmpty()) {
+	void push(int val)
+	{
+		if (this->isEmpty())
+		{
 			Node *newNode = new Node(val);
 			beti = newNode;
 			koteni = newNode;
-		} else {
+		}
+		else
+		{
 			Node *newNode = new Node(val);
 			koteni->next = newNode;
 			koteni = newNode;
@@ -51,10 +62,10 @@ struct Queue {
 		size++;
 	}
 
-	bool isEmpty() {
+	bool isEmpty()
+	{
 		return size == 0;
 	}
-
 };
 
 int main()
@@ -72,7 +83,8 @@ int main()
 	q.push(10);
 	q.push(10);
 	q.push(10);
-	while (!q.isEmpty()) {
+	while (!q.isEmpty())
+	{
 		cout << q.front() << " ";
 		q.pop();
 	}
