@@ -13,19 +13,21 @@ struct Node {
 
 
 struct Stack {
-	Node *top;
+	Node *bas;
+	int size;
 
 	Stack() {
-		this->top = nullptr;
+		this->bas = nullptr;
 	}
 
 	void push(int val) {
+		size++;
 		if (this->isEmpty()) {
-			top = new Node(val);
+			bas = new Node(val);
 		} else {
 			Node* newNode = new Node(val);
-			newNode->next = top;
-			top = newNode;
+			newNode->next = bas;
+			bas = newNode;
 		}
 	}
 
@@ -33,18 +35,19 @@ struct Stack {
 		if (this->isEmpty()) {
 			throw std::invalid_argument("the stack is empty!!!");
 		} else {
-			Node *toDelete = top;
-			top = top->next;
+			size--;
+			Node *toDelete = bas;
+			bas = bas->next;
 			delete (toDelete);
 		}
 	}
 
 	int top() {
-		return top->val;
+		return bas->val;
 	}
 
 	bool isEmpty() {
-		return top == nullptr;
+		return size == 0;
 	}
 };
 
@@ -54,8 +57,18 @@ int main() {
 	int n;
 	cin >> n;
 	while (n--) {
-		
+		int temp;
+		cin >> temp;
+		st.push(temp);
 	}
+	cout << st.isEmpty();
+	st.pop();
+	cout << st.isEmpty();
+	st.pop();
+	cout << st.isEmpty();
+	st.pop();
+	cout << st.isEmpty();
+	st.pop();
 
 	return 0;
 }
