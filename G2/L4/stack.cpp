@@ -18,6 +18,7 @@ struct Stack {
 
 	Stack() {
 		this->bas = nullptr;
+		this->size = 0;
 	}
 
 	void push(int val) {
@@ -34,6 +35,7 @@ struct Stack {
 	void pop() {
 		if (this->isEmpty()) {
 			throw std::invalid_argument("the stack is empty!!!");
+			// return;
 		} else {
 			size--;
 			Node *toDelete = bas;
@@ -61,13 +63,9 @@ int main() {
 		cin >> temp;
 		st.push(temp);
 	}
-	cout << st.isEmpty();
 	st.pop();
-	cout << st.isEmpty();
 	st.pop();
-	cout << st.isEmpty();
 	st.pop();
-	cout << st.isEmpty();
 	st.pop();
 
 	return 0;
