@@ -5,26 +5,25 @@ using namespace std;
 struct ListNode {
     int value;
     ListNode* next;
+    ListNode* prev;
     ListNode() {
         this->value = 0;
         this->next = nullptr;
+        this->prev = nullptr;
     }
     ListNode(int input_value) {
         this->value = input_value;
         this->next = nullptr;
-    }
-    ListNode(int input_value, ListNode* next_node) {
-        this->value = input_value;
-        this->next = next_node;
+        this->prev = nullptr;
     }
 };
 
-struct LinkedList {
+struct DoublyLinkedList {
     int size;
     ListNode* head;
     ListNode* tail;
 
-    LinkedList() {
+    DoublyLinkedList() {
         this->size = 0;
         this->head = nullptr;
         this->tail = nullptr;
@@ -50,6 +49,7 @@ struct LinkedList {
             this->tail = new_node;
         } else {
             this->tail->next = new_node;
+            new_node->prev = this->tail;
             this->tail = new_node;
         }
     }
@@ -65,10 +65,12 @@ struct LinkedList {
         } else {
             ListNode* current = this->head;
             ListNode* new_node = new ListNode(value);
-            for(int i = 0; i < index - 1; i++)
+            for(int i = 0; i < index; i++)
                 current = current->next;
-            new_node->next = current->next;
-            current->next = new_node;
+            new_node->prev = current->prev;
+            current->prev->next = new_node;
+            current->prev = new_node;
+            new_node->next = current;
             this->size++;
         }
     }
@@ -87,10 +89,9 @@ struct LinkedList {
     void deleteByValue(int value) {
         this->size--;
         ListNode* current = this->head;
-        while(current->next->value != value) {
+        while(current->value != value) {
             current = current->next;
         }
-        current->next = current->next->next;
     }
 
     void deleteAtIndex(int index) {
@@ -100,19 +101,21 @@ struct LinkedList {
         }else if(index == 0) {
             this->size--;
             head = head->next;
+            head->prev = nullptr;
         } else if(index == this->size - 1) {
             this->size--;
-            ListNode* current = this->head;
-            while(current->next != this->tail) 
-                current = current->next;
-            current->next = nullptr;
-            this->tail = current;
+            ListNode* temp = this->tail;
+            this->tail = this->tail->prev;
+            this->tail->next = nullptr;
+            delete temp;
+            
         } else {
             this->size--;
             ListNode* current = this->head;
-            for(int i = 0; i < index - 1; i++)
+            for(int i = 0; i < index; i++)
                 current = current->next;
-            current->next = current->next->next;
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
         }
     }
     
@@ -126,7 +129,7 @@ struct LinkedList {
 };
 
 int main() {
-    LinkedList* ll = new LinkedList();
+    DoublyLinkedList* ll = new DoublyLinkedList();
     ll->addAtHead(5);
     ll->addAtTail(2);
     ll->addAtIndex(1, 3);
