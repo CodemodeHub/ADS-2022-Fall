@@ -1,29 +1,36 @@
 #include <iostream>
 using namespace std;
 
-
-struct Node {
+struct Node
+{
 	int val;
 	Node *next;
-	Node(int val) {
+	Node(int val)
+	{
 		this->val = val;
 		this->next = nullptr;
 	}
 };
 
-struct Stack {
+struct Stack
+{
 	int size;
 	Node *top;
 
-	Stack() {
+	Stack()
+	{
 		size = 0;
 		top = nullptr;
 	}
 
-	void pop() {
-		if (this->isEmpty()) {
+	void pop()
+	{
+		if (this->isEmpty())
+		{
 			throw std::invalid_argument("error: stack is empty");
-		} else {
+		}
+		else
+		{
 			Node *toDelete = top;
 			top = top->next;
 			size--;
@@ -31,7 +38,8 @@ struct Stack {
 		}
 	}
 
-	int peek() {
+	int peek()
+	{
 		if (this->isEmpty())
 		{
 			throw std::invalid_argument("error: stack is empty");
@@ -42,19 +50,29 @@ struct Stack {
 		}
 	}
 
-	void push(int val) {
+	void push(int val)
+	{
 		Node *newNode = new Node(val);
-		newNode->next = top;
-		top = newNode;
+		if (this->isEmpty())
+		{
+			top = newNode;
+		}
+		else
+		{
+			newNode->next = top;
+			top = newNode;
+		}
 		size++;
 	}
 
-	bool isEmpty() {
+	bool isEmpty()
+	{
 		return size == 0;
 	}
 };
 
-int main() {
+int main()
+{
 	Stack st;
 	st.push(1);
 	st.push(2);
