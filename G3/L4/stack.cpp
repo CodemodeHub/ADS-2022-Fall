@@ -19,12 +19,16 @@ struct Stack {
 
 	}
 
+	int peek() {
+		
+	}
+
 	void push(int val) {
 
 	}
 
 	bool isEmpty() {
-		
+
 	}
 };
 
