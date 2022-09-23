@@ -66,23 +66,21 @@ struct DoublyLinkedList
 	{
 		ListNode *cur = head;
 		int index = 1;
-		while (cur != nullptr) {
-			if (index % k == 0) {
-				if (cur->next == nullptr) {
-					ListNode *toDel = cur;
+		while (cur != nullptr)
+		{
+			if (index % k == 0)
+			{
+				if (cur->next == nullptr)
+				{
 					cur->prev->next = nullptr;
-					cur = cur->next;
-					delete (toDel);
-				} else {
-					ListNode *toDel = cur;
+				}
+				else
+				{
 					cur->prev->next = cur->next;
 					cur->next->prev = cur->prev;
-					cur = cur->next;
-					delete (toDel);
 				}
-			} else {
-				cur = cur->next;
 			}
+			cur = cur->next;
 			index++;
 		}
 	}
@@ -104,7 +102,8 @@ int main()
 	int n, m, k;
 	cin >> n >> k;
 	DoublyLinkedList dll;
-	while (n--) {
+	while (n--)
+	{
 		cin >> m;
 		dll.push_back(m);
 	}
