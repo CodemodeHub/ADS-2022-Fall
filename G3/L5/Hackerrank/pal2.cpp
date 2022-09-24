@@ -62,31 +62,49 @@ struct LinkedList
 	{
 		return size == 0;
 	}
+
+	bool isPalindrome()
+	{
+		ListNode *slow = head, *fast = head, *prev, *temp;
+		while (fast && fast->next)
+			slow = slow->next, fast = fast->next->next;
+		prev = slow, slow = slow->next, prev->next = NULL;
+		while (slow)
+			temp = slow->next;
+		slow->next = prev;
+		prev = slow;
+		slow = temp;
+		fast = head;
+		slow = prev;
+		while (slow)
+			if (fast->val != slow->val)
+				return false;
+			else
+			{
+				fast = fast->next;
+				slow = slow->next;
+			}
+		return true;
+	}
 };
 
 int main()
 {
 	int n, m;
 	cin >> n;
-	LinkedList ll1;
+	LinkedList ll;
 	while (n--)
 	{
 		cin >> m;
-		ll1.push_back(m);
+		ll.push_back(m);
 	}
-
-	LinkedList ll2 = ll1;
-	ll2.reverse();
-	ListNode *cur1 = ll1.head, *cur2 = ll2.head;
-	while (cur1 != nullptr && cur2 != nullptr) {
-		if (cur1->val != cur2->val) {
-			cout << "NO";
-			return 0;
-		}
-		cur1 = cur1->next;
-		cur2 = cur2->next;
+	if (ll.isPalindrome())
+	{
+		cout << "YES";
 	}
-	cout << "YES";
-
+	else
+	{
+		cout << "NO";
+	}
 	return 0;
 }
