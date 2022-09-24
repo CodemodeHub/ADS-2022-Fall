@@ -67,9 +67,9 @@ struct LinkedList
 	{
 		ListNode *slow = head, *fast = head, *prev, *temp;
 		while (fast != nullptr && fast->next != nullptr) {
-
+			slow = slow->next;
+			fast = fast->next->next;
 		}
-			slow = slow->next, fast = fast->next->next;
 		prev = slow, slow = slow->next, prev->next = NULL;
 		while (slow != nullptr)
 			temp = slow->next;
