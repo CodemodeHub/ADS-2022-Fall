@@ -10,7 +10,7 @@ int main()
 	{
 		cin >> ar[i];
 	}
-	unsigned long long left = 0, right = 1e9, mid, cnt, sum;
+	unsigned long long left = 0, right = 1e15, mid, cnt, sum;
 	while (left < right) {
 		mid = left + (right - left) / 2;
 		cnt = 1;
