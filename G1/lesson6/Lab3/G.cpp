@@ -14,7 +14,7 @@ int getMin(vector<int> a, int k)
 	int maxm = 0;
 	for (int i = 0; i < a.size(); i++)
 		maxm = max(a[i], maxm);
-
+	
 	int left = 1, right = maxm + 1;
 	int ans = -1;
 	while (left + 1 < right)
@@ -29,11 +29,10 @@ int getMin(vector<int> a, int k)
 		{
 			left = mid;
 		}
-	}	
+	}
 	return ans;
 }
 
-// Driver Code
 int main()
 {
 	int n, k;
