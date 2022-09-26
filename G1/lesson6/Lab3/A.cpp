@@ -31,7 +31,8 @@ int binary_search_dec(int ar[], int target, int left, int right) {
 
 
 int main() {
-
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
 	int x;
 	cin >> x;
 	int ar[x];
@@ -48,7 +49,27 @@ int main() {
 	}
 
 	for (int k = 0; k < x; k++) {
-
+		for (int i = 0; i < m; i++) {
+			if (i % 2 == 0) {
+				int index = binary_search_dec(ar2d[i], ar[k], 0, n - 1);
+				if (index != -1)
+				{
+					cout << i << " " << index << endl;
+				} else {
+					cout << index << endl;
+				}
+			} else {
+				int index = binary_search_inc(ar2d[i], ar[k], 0, n - 1);
+				if (index != -1)
+				{
+					cout << i << " " << index << endl;
+				}
+				else
+				{
+					cout << index << endl;
+				}
+			}
+		}
 	}
 
 	return 0;
