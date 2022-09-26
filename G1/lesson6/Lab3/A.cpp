@@ -55,7 +55,10 @@ int main() {
 				if (index != -1)
 				{
 					cout << i << " " << index << endl;
-				} else {
+					break;
+				}
+				else if (index == -1 && i == m - 1)
+				{
 					cout << index << endl;
 				}
 			} else {
@@ -63,8 +66,9 @@ int main() {
 				if (index != -1)
 				{
 					cout << i << " " << index << endl;
+					break;
 				}
-				else
+				else if (index == -1 && i == m - 1)
 				{
 					cout << index << endl;
 				}
