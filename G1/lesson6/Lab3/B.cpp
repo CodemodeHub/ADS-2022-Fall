@@ -15,8 +15,22 @@ int main()
 		mid = left + (right - left) / 2;
 		cnt = 1;
 		sum = 0;
-		
+		for (int i = 0; i < n; i++) {
+			if (mid < sum + ar[i]) {
+				cnt++;
+				sum = 0;
+			}
+			if (mid < ar[i]) {
+				cnt = k + 1;
+			}
+			sum += ar[i];
+		}
+		if (k < cnt) {
+			left = mid + 1;
+		} else {
+			right = mid;
+		}
 	}
-
+	cout << left;
 	return 0;
 }
