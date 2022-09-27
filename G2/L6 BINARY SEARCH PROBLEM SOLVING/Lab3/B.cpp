@@ -10,7 +10,7 @@ int main()
 		cin >> ar[i];
 	}
 	unsigned long long left = 0, right = 1e15, mid, cnt, sum;
-	while (left <= right) {
+	while (left < right) {
 		mid = left + (right - left) / 2;
 		cnt = 1;
 		sum = 0;
@@ -27,10 +27,10 @@ int main()
 		if (k < cnt) {
 			left = mid + 1;
 		} else {
-			right = mid - 1;
+			right = mid;
 		}
 	}
-	cout << mid;
+	cout << left;
 
 	return 0;
 }
