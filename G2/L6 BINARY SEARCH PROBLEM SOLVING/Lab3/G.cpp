@@ -6,22 +6,22 @@ int binary_search(int ar[], int size, int flights) {
 	for (int i = 0; i < size; i++) {
 		max_number = max(max_number, ar[i]);
 	}
-	int left = 1, right = max_number, mid;
-	while (left < right) {
+	int left = 1, right = max_number + 1, mid;
+	while (left + 1 < right) {
 		mid = left + (right - left) / 2;
 		int req_flights = 0;
 		for (int i = 0; i < size; i++) {
 			req_flights += (ar[i] + mid - 1) / mid;
 		}
 		if (req_flights < flights) {
-			right = mid - 1;
+			right = mid;
 		} else if (req_flights > flights) {
-			left = mid + 1;
+			left = mid;
 		} else {
 			return mid;
 		}
 	}
-	return left;
+	return mid;
 }
 
 int main() {
