@@ -7,21 +7,21 @@ int binary_search(int ar[], int size, int flights) {
 		max_number = max(max_number, ar[i]);
 	}
 	int left = 1, right = max_number + 1, mid;
+	int answer = -1;
 	while (left + 1 < right) {
 		mid = left + (right - left) / 2;
 		int req_flights = 0;
 		for (int i = 0; i < size; i++) {
 			req_flights += (ar[i] + mid - 1) / mid;
 		}
-		if (req_flights < flights) {
+		if (req_flights <= flights) {
 			right = mid;
+			answer = mid;
 		} else if (req_flights > flights) {
 			left = mid;
-		} else {
-			return mid;
 		}
 	}
-	return mid;
+	return answer;
 }
 
 int main() {
