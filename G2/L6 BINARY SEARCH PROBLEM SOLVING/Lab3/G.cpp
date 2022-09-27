@@ -21,7 +21,7 @@ int binary_search(int ar[], int size, int flights) {
 			return mid;
 		}
 	}
-	return -1;
+	return left;
 }
 
 int main() {
