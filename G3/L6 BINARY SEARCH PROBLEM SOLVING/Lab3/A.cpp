@@ -4,7 +4,7 @@ using namespace std;
 int binary_search_inc(int ar[], int target, int size)
 {
 	int left = 0, right = size - 1, mid;
-	while (left < right)
+	while (left <= right)
 	{
 		mid = left + (right - left) / 2;
 		if (target < ar[mid])
@@ -26,7 +26,7 @@ int binary_search_inc(int ar[], int target, int size)
 int binary_search_dec(int ar[], int target, int size)
 {
 	int left = 0, right = size - 1, mid;
-	while (left < right)
+	while (left <= right)
 	{
 		mid = left + (right - left) / 2;
 		if (target > ar[mid])
@@ -47,8 +47,6 @@ int binary_search_dec(int ar[], int target, int size)
 
 int main()
 {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
 	int n;
 	cin >> n;
 	int numbers[n];
@@ -88,6 +86,7 @@ int main()
 			else if (index == -1 && j == a - 1)
 			{
 				cout << -1 << endl;
+				break;
 			}
 		}
 	}
