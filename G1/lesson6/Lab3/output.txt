@@ -1,0 +1,7 @@
+You are given array a (1 ≤ ai ≤ 109
+) of length n (1 ≤ n ≤ 105
+) and q queries. In query i you are given two
+pairs of segments l1, r1, l2, r2 (1 ≤ l1 ≤ r1 ≤ 109
+, 1 ≤ l2 ≤ r2 ≤ 109
+), find number of indices c (1 ≤ c ≤ n)
+for which one of the following conditions is satisfied: l1 ≤ ac ≤ r1 or l2 ≤ ac ≤ r2.
