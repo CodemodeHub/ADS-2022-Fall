@@ -51,5 +51,10 @@ struct MinHeap {
 int main() {
 	MinHeap heap;
 
+	int ar[] = { 1, 3, 6, 13, 654, 324 , 4 };
+	// minimal + minimal;
+	// insert it to the heap;
+	// cout the sum of these elements until there's one el in heap left
+
 	return 0;
 }
