@@ -37,7 +37,7 @@ struct MinHeap {
 		int l = this->left(i);
 		int r = this->right(i);
 		int smallest = i;
-		if (l < this->heap.size() && this->heap[l] < this->heap[i])
+		if (l < this->heap.size() && this->heap[l] < this->heap[smallest])
 			smallest = l;
 		if (r < this->heap.size() && this->heap[r] < this->heap[smallest])
 			smallest = r;
@@ -49,15 +49,15 @@ struct MinHeap {
 };
 
 int main() {
-	MinHeap* heap = new MinHeap();
-	heap->insert(3);
-	heap->insert(7);
-	heap->insert(6);
-	heap->insert(5);
-	heap->insert(12);
-	heap->insert(5);
-	while (heap->heap.size() != 0) {
-		cout << heap->extactMin() << " ";
+	MinHeap heap;
+	heap.insert(20);
+	heap.insert(7);
+	heap.insert(6);
+	heap.insert(5);
+	heap.insert(12);
+	heap.insert(5);
+	while (heap.heap.size() != 0) {
+		cout << heap.extactMin() << " ";
 	}
 	return 0;
 }

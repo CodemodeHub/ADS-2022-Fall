@@ -34,18 +34,7 @@ private:
 		this->postorder(node->right);
 		cout << node->value << " ";
 	}
-	void insert(int value, Node* cur) {
-		if (!cur) {
-			cur = new Node(value);
-		}
-		else {
-			if (!cur->left)
-				this->insert(value, cur->left);
-			else if (!cur->right)
-				this->insert(value, cur->right);
 
-		}
-	}
 	Node* findBlankNode() {
 		queue<Node*> q;
 		q.push(this->root);
@@ -95,21 +84,20 @@ public:
 };
 
 int main() {
-	BinaryTree* tree = new BinaryTree();
-	tree->insert(1);
-	tree->insert(2);
-	tree->insert(3);
-	tree->insert(4);
-	tree->insert(5);
-	tree->insert(6);
-	tree->insert(7);
-	tree->remove(7);
-	tree->insert(8);
-	tree->inorder();
+	BinaryTree tree;
+	tree.insert(1);
+	tree.insert(2);
+	tree.insert(3);
+	tree.insert(4);
+	tree.insert(5);
+	tree.insert(6);
+	tree.insert(7);
+	tree.remove(3);
+	tree.inorder();
 	cout << endl;
-	tree->preorder();
+	tree.preorder();
 	cout << endl;
-	tree->postorder();
+	tree.postorder();
 	cout << endl;
 	return 0;
 }
