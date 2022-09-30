@@ -46,15 +46,25 @@ struct MinHeap {
 			this->heapify(smallest);
 		}
 	}
+
+	int getSize() {
+		return heap.size();
+	}
 };
 
 int main() {
 	MinHeap heap;
-
 	int ar[] = { 1, 3, 6, 13, 654, 324 , 4 };
-	// minimal + minimal;
-	// insert it to the heap;
-	// cout the sum of these elements until there's one el in heap left
-
+	for (int i = 0; i < 7; i++) {
+		heap.insert(ar[i]);
+	}
+	int answer = 0;
+	while (heap.getSize() > 1) {
+		int first = heap.extractMin();
+		int second = heap.extractMin();
+		answer += first + second;
+		heap.insert(first + second);
+	}
+	cout << answer;
 	return 0;
 }
