@@ -53,6 +53,8 @@ struct MinHeap {
 };
 
 int main() {
+	int ar[] = { 1, 3, 6, 13, 654, 324, 4 };
+	MinHeap mh;
 	
 	return 0;
 }
