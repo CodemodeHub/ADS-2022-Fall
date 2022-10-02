@@ -1,10 +1,9 @@
 class Node
 {
 public:
-	Node *prev, *next;
+	Node* prev, * next;
 	string val;
-	Node(string val)
-	{
+	Node(string val) {
 		this->val = val;
 		this->prev = nullptr;
 		this->next = nullptr;
@@ -14,50 +13,38 @@ public:
 class BrowserHistory
 {
 private:
-	Node *cur;
+	Node* cur;
 
 public:
-	BrowserHistory(string homepage)
-	{
+	BrowserHistory(string homepage) {
 		this->cur = new Node(homepage);
 	}
 
-	void visit(string url)
-	{
-		Node *newPage = new Node(url);
+	void visit(string url) {
+		Node* newPage = new Node(url);
 		this->cur->next = newPage;
 		newPage->prev = this->cur;
 		this->cur = newPage;
 		// this->cur = this->cur->next;
 	}
 
-	string back(int steps)
-	{
-		while (steps--)
-		{
-			if (this->cur->prev != nullptr)
-			{
+	string back(int steps) {
+		while (steps--) {
+			if (this->cur->prev != nullptr) {
 				this->cur = this->cur->prev;
-			}
-			else
-			{
+			} else {
 				break;
 			}
 		}
 		return this->cur->val;
 	}
 
-	string forward(int steps)
-	{
+	string forward(int steps) {
 		// for (int i = 0; i < steps; i++)
-		while (steps--)
-		{
-			if (this->cur->next != nullptr)
-			{
+		while (steps--) {
+			if (this->cur->next != nullptr) {
 				this->cur = this->cur->next;
-			}
-			else
-			{
+			} else {
 				break;
 			}
 		}

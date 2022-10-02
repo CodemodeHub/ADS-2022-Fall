@@ -5,40 +5,34 @@ using namespace std;
 struct Node
 {
 	string s;
-	Node *next;
+	Node* next;
 
-	Node(string s)
-	{
+	Node(string s) {
 		this->s = s;
 		next = nullptr;
 	}
 };
 struct LinkedList
 {
-	Node *head;
-	Node *tail;
+	Node* head;
+	Node* tail;
 	int size;
 	int index;
 
-	LinkedList()
-	{
+	LinkedList() {
 		head = nullptr;
 		tail = nullptr;
 		size = 0;
 		index = 0;
 	}
 
-	void push(string s)
-	{
-		Node *newNode = new Node(s);
+	void push(string s) {
+		Node* newNode = new Node(s);
 
-		if (head == nullptr)
-		{
+		if (head == nullptr) {
 			head = newNode;
 			tail = newNode;
-		}
-		else
-		{
+		} else {
 			tail->next = newNode;
 			tail = newNode;
 		}
@@ -46,23 +40,19 @@ struct LinkedList
 		size++;
 	}
 
-	void print()
-	{
-		Node *cur = head;
+	void print() {
+		Node* cur = head;
 
-		while (cur != nullptr)
-		{
+		while (cur != nullptr) {
 			cout << cur->s << " ";
 			cur = cur->next;
 		}
 	}
 
-	void change(int k)
-	{
-		Node *cur = this->head;
+	void change(int k) {
+		Node* cur = this->head;
 		cout << head->s;
-		while (k--)
-		{
+		while (k--) {
 			this->head = this->head->next;
 			cur->next = nullptr;
 			this->tail->next = cur;
@@ -71,14 +61,12 @@ struct LinkedList
 	}
 };
 
-int main()
-{
+int main() {
 	LinkedList list;
 	int n, k;
 	cin >> n >> k;
 	string s;
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		cin >> s;
 		list.push(s);
 	}

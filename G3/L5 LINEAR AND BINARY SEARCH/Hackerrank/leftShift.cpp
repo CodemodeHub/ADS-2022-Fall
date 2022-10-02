@@ -4,10 +4,9 @@ using namespace std;
 struct ListNode
 {
 	int val;
-	ListNode *next;
+	ListNode* next;
 
-	ListNode(int val)
-	{
+	ListNode(int val) {
 		this->val = val;
 		this->next = nullptr;
 	}
@@ -16,68 +15,55 @@ struct ListNode
 struct LinkedList
 {
 	int size;
-	ListNode *head;
-	ListNode *tail;
+	ListNode* head;
+	ListNode* tail;
 
-	LinkedList()
-	{
+	LinkedList() {
 		this->size = 0;
 		this->head = nullptr;
 		this->tail = nullptr;
 	}
 
-	void push_front(int val)
-	{
+	void push_front(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			temp->next = this->head;
 			this->head = temp;
 		}
 	}
 
-	void push_back(int val)
-	{
+	void push_back(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			this->tail->next = temp;
 			this->tail = temp;
 		}
 	}
 
-	bool empty()
-	{
+	bool empty() {
 		return size == 0;
 	}
 
-	void print()
-	{
-		ListNode *cur = head;
-		while (cur)
-		{
+	void print() {
+		ListNode* cur = head;
+		while (cur) {
 			cout << cur->val << " ";
 			cur = cur->next;
 		}
 		cout << '\n';
 	}
 
-	void shiftLeft(int k)
-	{
+	void shiftLeft(int k) {
 		tail->next = head;
-		while(k--) {
+		while (k--) {
 			head = head->next;
 			tail = tail->next;
 		}
@@ -85,8 +71,7 @@ struct LinkedList
 	}
 };
 
-int main()
-{
+int main() {
 	int n, m, k;
 	LinkedList ll;
 	cin >> n >> k;

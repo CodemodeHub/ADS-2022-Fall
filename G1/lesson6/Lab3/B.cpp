@@ -1,40 +1,31 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
 	int n, k;
 	cin >> n >> k;
 	int ar[n];
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		cin >> ar[i];
 	}
 	unsigned long long left = 0, right = 1e15, mid, cnt, sum;
-	while (left < right)
-	{
+	while (left < right) {
 		mid = left + (right - left) / 2;
 		cnt = 1;
 		sum = 0;
-		for (int i = 0; i < n; i++)
-		{
-			if (mid < sum + ar[i])
-			{
+		for (int i = 0; i < n; i++) {
+			if (mid < sum + ar[i]) {
 				cnt++;
 				sum = 0;
 			}
-			if (mid < ar[i])
-			{
+			if (mid < ar[i]) {
 				cnt = k + 1;
 			}
 			sum += ar[i];
 		}
-		if (k < cnt)
-		{
+		if (k < cnt) {
 			left = mid + 1;
-		}
-		else
-		{
+		} else {
 			right = mid;
 		}
 	}

@@ -4,10 +4,9 @@ using namespace std;
 struct ListNode
 {
 	int val;
-	ListNode *next;
+	ListNode* next;
 
-	ListNode(int val)
-	{
+	ListNode(int val) {
 		this->val = val;
 		this->next = nullptr;
 	}
@@ -16,56 +15,45 @@ struct ListNode
 struct LinkedList
 {
 	int size;
-	ListNode *head;
-	ListNode *tail;
+	ListNode* head;
+	ListNode* tail;
 
-	LinkedList()
-	{
+	LinkedList() {
 		this->size = 0;
 		this->head = nullptr;
 		this->tail = nullptr;
 	}
 
-	void push_front(int val)
-	{
+	void push_front(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			temp->next = this->head;
 			this->head = temp;
 		}
 	}
 
-	void push_back(int val)
-	{
+	void push_back(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			this->tail->next = temp;
 			this->tail = temp;
 		}
 	}
 
-	bool empty()
-	{
+	bool empty() {
 		return size == 0;
 	}
 
-	bool isPalindrome()
-	{
-		ListNode *slow = head, *fast = head, *prev, *temp;
+	bool isPalindrome() {
+		ListNode* slow = head, * fast = head, * prev, * temp;
 		while (fast != nullptr && fast->next != nullptr) {
 			slow = slow->next;
 			fast = fast->next->next;
@@ -81,8 +69,7 @@ struct LinkedList
 		while (slow)
 			if (fast->val != slow->val)
 				return false;
-			else
-			{
+			else {
 				fast = fast->next;
 				slow = slow->next;
 			}
@@ -90,22 +77,17 @@ struct LinkedList
 	}
 };
 
-int main()
-{
+int main() {
 	int n, m;
 	cin >> n;
 	LinkedList ll;
-	while (n--)
-	{
+	while (n--) {
 		cin >> m;
 		ll.push_back(m);
 	}
-	if (ll.isPalindrome())
-	{
+	if (ll.isPalindrome()) {
 		cout << "YES";
-	}
-	else
-	{
+	} else {
 		cout << "NO";
 	}
 	return 0;

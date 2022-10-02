@@ -53,7 +53,7 @@ struct MinHeap {
 };
 
 int main() {
-	int ar[] = { 1, 3, 6, 13, 654, 324, 4 }; 
+	int ar[] = { 1, 3, 6, 13, 654, 324, 4 };
 	MinHeap mh;
 	// ANSWER IS 1409
 	return 0;

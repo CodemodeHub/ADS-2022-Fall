@@ -4,7 +4,7 @@ using namespace std;
 
 struct Node {
 	int val;
-	Node *next;
+	Node* next;
 
 	Node(int val) {
 		this->val = val;
@@ -13,7 +13,7 @@ struct Node {
 
 
 struct Stack {
-	Node *bas;
+	Node* bas;
 	int size;
 
 	Stack() {
@@ -38,7 +38,7 @@ struct Stack {
 			// return;
 		} else {
 			size--;
-			Node *toDelete = bas;
+			Node* toDelete = bas;
 			bas = bas->next;
 			delete (toDelete);
 		}

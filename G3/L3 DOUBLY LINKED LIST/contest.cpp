@@ -4,22 +4,19 @@ using namespace std;
 struct ListNode
 {
 	int val;
-	ListNode *next;
+	ListNode* next;
 
-	ListNode()
-	{
+	ListNode() {
 		this->val = 0;
 		this->next = nullptr; // NULL, if this doesnt work
 	}
 
-	ListNode(int val)
-	{
+	ListNode(int val) {
 		this->val = val;
 		this->next = nullptr;
 	}
 
-	ListNode(int val, ListNode *next)
-	{
+	ListNode(int val, ListNode* next) {
 		this->val = val;
 		this->next = next;
 	}
@@ -28,50 +25,41 @@ struct ListNode
 struct LinkedList
 {
 	int size;
-	ListNode *head;
-	ListNode *tail;
+	ListNode* head;
+	ListNode* tail;
 
-	LinkedList()
-	{
+	LinkedList() {
 		this->size = 0;
 		this->head = nullptr;
 		this->tail = nullptr;
 	}
 
-	void addAtTail(int val)
-	{
-		ListNode *newNode = new ListNode(val);
-		if (this->size == 0)
-		{
+	void addAtTail(int val) {
+		ListNode* newNode = new ListNode(val);
+		if (this->size == 0) {
 			this->head = newNode;
 			this->tail = newNode;
-		}
-		else
-		{
+		} else {
 			this->tail->next = newNode;
 			this->tail = newNode;
 		}
 		this->size++;
 	}
 
-	void print()
-	{
-		ListNode *cur = this->head;
-		while (cur != nullptr)
-		{
+	void print() {
+		ListNode* cur = this->head;
+		while (cur != nullptr) {
 			cout << cur->val << " ";
 			cur = cur->next;
 		}
 		cout << endl;
 	}
 
-	void reverseList()
-	{
+	void reverseList() {
 		this->tail = this->head;
-		ListNode *prev = nullptr, *cur = this->head;
-		while (cur != nullptr)
-		{
-			ListNode *nextt = cur->next;
+		ListNode* prev = nullptr, * cur = this->head;
+		while (cur != nullptr) {
+			ListNode* nextt = cur->next;
 			cur->next = prev;
 			prev = cur;
 			cur = nextt;
@@ -81,8 +69,7 @@ struct LinkedList
 };
 
 
-int main()
-{
+int main() {
 	LinkedList ll;
 	int n;
 	cin >> n;

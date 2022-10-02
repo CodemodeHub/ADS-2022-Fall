@@ -58,8 +58,7 @@ public:
 	void insert(int value) {
 		if (!this->root) {
 			this->root = new Node(value);
-		}
-		else {
+		} else {
 			Node* cur = this->findBlankNode();
 			if (!cur->left)
 				cur->left = new Node(value);

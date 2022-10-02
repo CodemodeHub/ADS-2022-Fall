@@ -4,22 +4,19 @@ using namespace std;
 struct ListNode
 {
 	int val;
-	ListNode *next;
+	ListNode* next;
 
-	ListNode()
-	{
+	ListNode() {
 		this->val = 0;
 		this->next = nullptr;
 	}
 
-	ListNode(int val)
-	{
+	ListNode(int val) {
 		this->val = val;
 		this->next = nullptr;
 	}
 
-	ListNode(int val, ListNode *next)
-	{
+	ListNode(int val, ListNode* next) {
 		this->val = val;
 		this->next = next;
 	}
@@ -28,66 +25,53 @@ struct ListNode
 struct LinkedList
 {
 	int size;
-	ListNode *head;
-	ListNode *tail;
+	ListNode* head;
+	ListNode* tail;
 
-	LinkedList()
-	{
+	LinkedList() {
 		this->size = 0;
 		this->head = nullptr;
 		this->tail = nullptr;
 	}
 
-	void push_front(int val)
-	{
+	void push_front(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			temp->next = this->head;
 			this->head = temp;
 		}
 	}
 
-	void push_back(int val)
-	{
+	void push_back(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			this->tail->next = temp;
 			this->tail = temp;
 		}
 	}
 
-	bool empty()
-	{
+	bool empty() {
 		return size == 0;
 	}
 
-	void print()
-	{
-		ListNode *cur = head;
-		while (cur)
-		{
+	void print() {
+		ListNode* cur = head;
+		while (cur) {
 			cout << cur->val << " ";
 			cur = cur->next;
 		}
 		cout << '\n';
 	}
 
-	void shiftLeft(int k)
-	{
+	void shiftLeft(int k) {
 		tail->next = head;
 		for (int i = 0; i < k; i++) {
 			head = head->next;
@@ -97,13 +81,11 @@ struct LinkedList
 	}
 };
 
-int main()
-{
+int main() {
 	LinkedList ll;
 	int n, m, k;
 	cin >> n >> k;
-	while (n--)
-	{
+	while (n--) {
 		cin >> m;
 		ll.push_back(m);
 	}
