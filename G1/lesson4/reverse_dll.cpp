@@ -31,7 +31,7 @@ struct DoublyLinkedList {
     void addAtHead(int value) {
         ListNode* new_node = new ListNode(value);
         this->size++;
-        if(!this->head) {
+        if (!this->head) {
             this->head = new_node;
             this->tail = new_node;
         } else {
@@ -43,7 +43,7 @@ struct DoublyLinkedList {
     void addAtTail(int value) {
         ListNode* new_node = new ListNode(value);
         this->size++;
-        if(!this->tail) {
+        if (!this->tail) {
             this->head = new_node;
             this->tail = new_node;
         } else {
@@ -54,17 +54,17 @@ struct DoublyLinkedList {
     }
 
     void addAtIndex(int index, int value) {
-        if(index < 0 || index > this->size) {
-            cout<<"Error"<<endl;
-            return ;
-        } else if(index == 0) {
+        if (index < 0 || index > this->size) {
+            cout << "Error" << endl;
+            return;
+        } else if (index == 0) {
             this->addAtHead(value);
-        } else if(index == this->size) {
+        } else if (index == this->size) {
             this->addAtTail(value);
         } else {
             ListNode* current = this->head;
             ListNode* new_node = new ListNode(value);
-            for(int i = 0; i < index; i++)
+            for (int i = 0; i < index; i++)
                 current = current->next;
             new_node->prev = current->prev;
             current->prev->next = new_node;
@@ -75,11 +75,11 @@ struct DoublyLinkedList {
     }
 
     int get(int index) {
-        if(index >= this->size || index < 0) {
+        if (index >= this->size || index < 0) {
             return -1;
         } else {
             ListNode* current = this->head;
-            for(int i = 0; i < index; i++) 
+            for (int i = 0; i < index; i++)
                 current = current->next;
             return current->value;
         }
@@ -88,40 +88,40 @@ struct DoublyLinkedList {
     void deleteByValue(int value) {
         this->size--;
         ListNode* current = this->head;
-        while(current->value != value) {
+        while (current->value != value) {
             current = current->next;
         }
     }
 
     void deleteAtIndex(int index) {
-        if(index >= this->size || index < 0) {
-            cout<<"Error";
-            return ;
-        }else if(index == 0) {
+        if (index >= this->size || index < 0) {
+            cout << "Error";
+            return;
+        } else if (index == 0) {
             this->size--;
             head = head->next;
             head->prev = nullptr;
-        } else if(index == this->size - 1) {
+        } else if (index == this->size - 1) {
             this->size--;
             ListNode* temp = this->tail;
             this->tail = this->tail->prev;
             this->tail->next = nullptr;
             delete temp;
-            
+
         } else {
             this->size--;
             ListNode* current = this->head;
-            for(int i = 0; i < index; i++)
+            for (int i = 0; i < index; i++)
                 current = current->next;
             current->prev->next = current->next;
             current->next->prev = current->prev;
         }
     }
-    
+
     void print() {
         ListNode* current = head;
-        while(current) {
-            cout<<current->value<<endl;
+        while (current) {
+            cout << current->value << endl;
             current = current->next;
         }
     }
@@ -131,12 +131,12 @@ ListNode* reverse_dll(ListNode* head) {
     ListNode* current = head;
     ListNode* next = current->next;
     ListNode* prev = nullptr;
-    while(current) {
+    while (current) {
         current->next = prev;
         current->prev = next;
         prev = current;
         current = next;
-        if(next)
+        if (next)
             next = next->next;
     }
     return prev;
@@ -148,14 +148,14 @@ int main() {
     ll->addAtHead(5);
     ll->addAtTail(2);
     ll->addAtIndex(1, 3);
-    ll->addAtIndex(1 ,4);
+    ll->addAtIndex(1, 4);
     ll->addAtTail(1);
     ll->addAtTail(4);
     ll->print();
-    cout<<endl;
+    cout << endl;
     ListNode* current = ll->tail;
-    while(current) {
-        cout<<current->value<<endl;
+    while (current) {
+        cout << current->value << endl;
         current = current->prev;
     }
     // ListNode* reversedHead = reverse_dll(ll->head);

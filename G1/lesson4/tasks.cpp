@@ -23,7 +23,7 @@ struct Stack {
     }
     void push(int value) {
         ListNode* newNode = new ListNode(value);
-        if(this->top==nullptr) {
+        if (this->top == nullptr) {
             this->top = newNode;
             this->size++;
         } else {
@@ -33,8 +33,8 @@ struct Stack {
         }
     }
     int pop() {
-        if(this->top == nullptr) {
-            cout<<"Stack is empty\n";
+        if (this->top == nullptr) {
+            cout << "Stack is empty\n";
             return INT_MIN;
         } else {
             int result = this->top->value;
@@ -52,13 +52,13 @@ struct Stack {
 
 int calPoints(vector<string>& ops) {
     Stack* records = new Stack();
-    for(int i = 0; i < ops.size(); i++) {
+    for (int i = 0; i < ops.size(); i++) {
         string operation = ops[i];
-        if(operation == "C") {
+        if (operation == "C") {
             records->pop();
-        } else if(operation == "D") {
+        } else if (operation == "D") {
             records->push(records->top->value * 2);
-        } else if(operation == "+") {
+        } else if (operation == "+") {
             int last = records->pop();
             int pre_last = records->top->value;
             records->push(last);
@@ -68,7 +68,7 @@ int calPoints(vector<string>& ops) {
         }
     }
     int result = 0;
-    while(!records->isEmpty()) {
+    while (!records->isEmpty()) {
         result += records->pop();
     }
     return result;
@@ -76,17 +76,17 @@ int calPoints(vector<string>& ops) {
 
 int postfix(vector<string> ops) {
     Stack* stack = new Stack();
-    for(int i = 0; i < ops.size(); i++) {
+    for (int i = 0; i < ops.size(); i++) {
         string operation = ops[i];
-        if(operation == "+") {
+        if (operation == "+") {
             int first = stack->pop();
             int second = stack->pop();
             stack->push(first + second);
-        } else if(operation == "-") {
+        } else if (operation == "-") {
             int first = stack->pop();
             int second = stack->pop();
             stack->push(second - first);
-        } else if(operation == "*") {
+        } else if (operation == "*") {
             int first = stack->pop();
             int second = stack->pop();
             stack->push(second * first);
@@ -98,7 +98,7 @@ int postfix(vector<string> ops) {
 }
 
 int main() {
-    vector<string> input = {"8", "9", "5", "+", "4", "*", "+"};
-    cout<<postfix(input)<<endl;
+    vector<string> input = { "8", "9", "5", "+", "4", "*", "+" };
+    cout << postfix(input) << endl;
     return 0;
 }

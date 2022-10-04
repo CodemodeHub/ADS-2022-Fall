@@ -4,22 +4,19 @@ using namespace std;
 struct ListNode
 {
 	int val;
-	ListNode *next;
+	ListNode* next;
 
-	ListNode()
-	{
+	ListNode() {
 		this->val = 0;
 		this->next = nullptr; // NULL, if this doesnt work
 	}
 
-	ListNode(int val)
-	{
+	ListNode(int val) {
 		this->val = val;
 		this->next = nullptr;
 	}
 
-	ListNode(int val, ListNode *next)
-	{
+	ListNode(int val, ListNode* next) {
 		this->val = val;
 		this->next = next;
 	}
@@ -28,8 +25,8 @@ struct ListNode
 
 struct LinkedList {
 	int size;
-	ListNode *head;
-	ListNode *tail;
+	ListNode* head;
+	ListNode* tail;
 
 	LinkedList() {
 		this->size = 0;
@@ -38,7 +35,7 @@ struct LinkedList {
 	}
 
 	void addAtHead(int val) {
-		ListNode *newNode = new ListNode(val);
+		ListNode* newNode = new ListNode(val);
 		if (this->size == 0) {
 			this->head = newNode;
 			this->tail = newNode;
@@ -50,9 +47,8 @@ struct LinkedList {
 	}
 
 	void addAtTail(int val) {
-		ListNode *newNode = new ListNode(val);
-		if (this->size == 0)
-		{
+		ListNode* newNode = new ListNode(val);
+		if (this->size == 0) {
 			this->head = newNode;
 			this->tail = newNode;
 		} else {
@@ -71,8 +67,8 @@ struct LinkedList {
 		} else if (index == this->size) {
 			this->addAtTail(val);
 		} else {
-			ListNode *newNode = new ListNode(val);
-			ListNode *cur = this->head;
+			ListNode* newNode = new ListNode(val);
+			ListNode* cur = this->head;
 			for (int i = 0; i < index - 1; i++) {
 				cur = cur->next;
 			}
@@ -83,7 +79,7 @@ struct LinkedList {
 	}
 
 	void printLL() {
-		ListNode *cur = this->head;
+		ListNode* cur = this->head;
 		while (cur != nullptr) {
 			cout << cur->val << " ";
 			cur = cur->next;
@@ -92,9 +88,8 @@ struct LinkedList {
 	}
 };
 
-int main()
-{
-	LinkedList *ll = new LinkedList();
+int main() {
+	LinkedList* ll = new LinkedList();
 	ll->addAtHead(5);
 	ll->printLL();
 	ll->addAtHead(2);

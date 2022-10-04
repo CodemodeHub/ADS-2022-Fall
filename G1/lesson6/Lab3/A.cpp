@@ -81,10 +81,8 @@
 #include <iostream>
 using namespace std;
 
-int binarySearchFirst(int arr[], int l, int r, int x)
-{
-	if (r >= l)
-	{
+int binarySearchFirst(int arr[], int l, int r, int x) {
+	if (r >= l) {
 		int mid = l + (r - l) / 2;
 		if (arr[mid] == x)
 			return mid;
@@ -95,10 +93,8 @@ int binarySearchFirst(int arr[], int l, int r, int x)
 	return -1;
 }
 
-int binarySearchSecond(int arr[], int l, int r, int x)
-{
-	if (r >= l)
-	{
+int binarySearchSecond(int arr[], int l, int r, int x) {
+	if (r >= l) {
 		int mid = l + (r - l) / 2;
 		if (arr[mid] == x)
 			return mid;

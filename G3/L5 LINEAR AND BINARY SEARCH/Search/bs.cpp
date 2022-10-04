@@ -2,54 +2,39 @@
 #include <vector>
 using namespace std;
 
-int binary_search(vector<int> v, int target)
-{
+int binary_search(vector<int> v, int target) {
 	int left = 0, right = v.size() - 1;
-	while (left <= right)
-	{
+	while (left <= right) {
 		// int mid = (left + right) / 2; BAD
 		int mid = left + (right - left) / 2;
-		if (target < v[mid])
-		{
+		if (target < v[mid]) {
 			right = mid - 1;
-		}
-		else if (target > v[mid])
-		{
+		} else if (target > v[mid]) {
 			left = mid + 1;
-		}
-		else
-		{
+		} else {
 			return mid;
 		}
 	}
 	return -1;
 }
 
-int binary_search_rec(vector<int> v, int target, int left, int right)
-{
-	if (left > right)
-	{
+int binary_search_rec(vector<int> v, int target, int left, int right) {
+	if (left > right) {
 		return -1;
 	}
 	int mid = left + (right - left) / 2;
-	if (target < v[mid])
-	{
+	if (target < v[mid]) {
 		return binary_search_rec(v, target, left, mid - 1);
-	}
-	else if (target > v[mid])
-	{
+	} else if (target > v[mid]) {
 		return binary_search_rec(v, target, mid + 1, right);
-	}
-	else
-	{
+	} else {
 		return mid;
 	}
 }
 
-int main()
-{
+int main() {
 
-	vector<int> v = {2, 2, 3, 5, 7, 8, 12, 15, 22, 22, 22, 234, 545, 1024};
+	vector<int> v = { 2, 2, 3, 5, 7, 8, 12, 15, 22, 22, 22, 234, 545, 1024 };
 	int target = 234;
 	cout << binary_search(v, target);
 	cout << endl;

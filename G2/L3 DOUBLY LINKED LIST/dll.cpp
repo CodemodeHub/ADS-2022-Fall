@@ -4,25 +4,22 @@ using namespace std;
 struct ListNode
 {
 	int val;
-	ListNode *next;
-	ListNode *prev;
+	ListNode* next;
+	ListNode* prev;
 
-	ListNode()
-	{
+	ListNode() {
 		this->val = 0;
 		this->next = nullptr; // or type NUll instead of nullptr
 		this->prev = nullptr; // or type NUll instead of nullptr
 	}
 
-	ListNode(int val)
-	{
+	ListNode(int val) {
 		this->val = val;
 		this->next = nullptr;
 		this->prev = nullptr;
 	}
 
-	ListNode(int val, ListNode *prev, ListNode *next)
-	{
+	ListNode(int val, ListNode* prev, ListNode* next) {
 		this->val = val;
 		this->next = next;
 		this->prev = prev;
@@ -32,70 +29,52 @@ struct ListNode
 struct DoublyLinkedList
 {
 	int size;
-	ListNode *head;
-	ListNode *tail;
+	ListNode* head;
+	ListNode* tail;
 
-	DoublyLinkedList()
-	{
+	DoublyLinkedList() {
 		this->size = 0;
 		this->head = nullptr;
 		this->tail = nullptr;
 	}
 
-	void addAtHead(int val)
-	{
+	void addAtHead(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			temp->next = this->head;
 			this->head->prev = temp;
 			this->head = temp;
 		}
 	}
 
-	void addAtTail(int val)
-	{
+	void addAtTail(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			this->tail->next = temp;
 			temp->prev = this->tail;
 			this->tail = temp;
 		}
 	}
 
-	void addAtIndex(int index, int val)
-	{
-		if (index < 0 || index > this->size)
-		{
+	void addAtIndex(int index, int val) {
+		if (index < 0 || index > this->size) {
 			return;
-		}
-		else if (index == 0)
-		{
+		} else if (index == 0) {
 			this->addAtHead(val);
-		}
-		else if (index == this->size)
-		{
+		} else if (index == this->size) {
 			this->addAtTail(val);
-		}
-		else
-		{
-			ListNode *temp = new ListNode(val);
-			ListNode *cur = this->head;
-			for (int i = 1; i < index; i++)
-			{
+		} else {
+			ListNode* temp = new ListNode(val);
+			ListNode* cur = this->head;
+			for (int i = 1; i < index; i++) {
 				cur = cur->next;
 			}
 			temp->next = cur->next;
@@ -106,55 +85,43 @@ struct DoublyLinkedList
 		}
 	}
 
-	int get(int index)
-	{
-		if (index < 0 || index >= this->size)
-		{
+	int get(int index) {
+		if (index < 0 || index >= this->size) {
 			throw std::invalid_argument("Index out of range");
 		}
-		ListNode *cur = this->head;
-		for (int i = 0; i < index; i++)
-		{
+		ListNode* cur = this->head;
+		for (int i = 0; i < index; i++) {
 			cur = cur->next;
 		}
 		return cur->val;
 	}
 
-	void deleteAtIndex(int index)
-	{
-		if (index == 0)
-		{
+	void deleteAtIndex(int index) {
+		if (index == 0) {
 			this->head = this->head->next;
 			// delete (this->head->prev);
 			this->head->prev = nullptr;
 			this->size--;
-		}
-		else if (index == this->size - 1)
-		{
+		} else if (index == this->size - 1) {
 			this->tail = this->tail->prev;
 			this->tail->next = nullptr;
 			this->size--;
-		}
-		else if (index > 0 && index < this->size)
-		{
-			ListNode *cur = this->head;
-			for (int i = 0; i < index; i++)
-			{
+		} else if (index > 0 && index < this->size) {
+			ListNode* cur = this->head;
+			for (int i = 0; i < index; i++) {
 				cur = cur->next;
 			}
-			ListNode *prevv = cur->prev;
-			ListNode *nextt = cur->next;
+			ListNode* prevv = cur->prev;
+			ListNode* nextt = cur->next;
 			prevv->next = nextt;
 			nextt->prev = prevv;
 			this->size--;
 		}
 	}
 
-	void print()
-	{
-		ListNode *cur = this->head;
-		while (cur != nullptr)
-		{
+	void print() {
+		ListNode* cur = this->head;
+		while (cur != nullptr) {
 			cout << cur->val << "->";
 			cur = cur->next;
 		}
@@ -162,7 +129,7 @@ struct DoublyLinkedList
 	}
 
 	void printReverse() {
-		ListNode *cur = this->tail;
+		ListNode* cur = this->tail;
 		while (cur != nullptr) {
 			cout << cur->val << " ";
 			cur = cur->prev;
@@ -171,17 +138,14 @@ struct DoublyLinkedList
 	}
 };
 
-ListNode *deleteDuplicates(ListNode *head)
-{
+ListNode* deleteDuplicates(ListNode* head) {
 	if (head == nullptr)
 		return nullptr;
 	if (head->next == nullptr)
 		return head;
-	ListNode *prev = head, *cur = head->next;
-	while (cur != nullptr)
-	{
-		if (cur->val == prev->val)
-		{
+	ListNode* prev = head, * cur = head->next;
+	while (cur != nullptr) {
+		if (cur->val == prev->val) {
 			prev->next = cur->next;
 			cur = cur->next;
 			continue;
@@ -192,9 +156,8 @@ ListNode *deleteDuplicates(ListNode *head)
 	return head;
 }
 
-int main()
-{
-	DoublyLinkedList *dll = new DoublyLinkedList();
+int main() {
+	DoublyLinkedList* dll = new DoublyLinkedList();
 	int n, m;
 	cin >> n;
 	while (n--) {

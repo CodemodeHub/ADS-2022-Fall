@@ -15,14 +15,14 @@ struct MinHeap {
     void insert(int value) {
         this->heap.push_back(value);
         int i = this->heap.size() - 1;
-        while(i != 0 && this->heap[parent(i)] > this->heap[i]) {
+        while (i != 0 && this->heap[parent(i)] > this->heap[i]) {
             swap(this->heap[parent(i)], this->heap[i]);
             i = parent(i);
         }
     }
     int extactMin() {
-        if(this->heap.size() == 0) return INT_MAX;
-        if(this->heap.size() == 1) {
+        if (this->heap.size() == 0) return INT_MAX;
+        if (this->heap.size() == 1) {
             int root = this->heap[0];
             this->heap.pop_back();
             return root;
@@ -37,11 +37,11 @@ struct MinHeap {
         int l = this->left(i);
         int r = this->right(i);
         int smallest = i;
-        if(l < this->heap.size() && this->heap[l] < this->heap[i])
+        if (l < this->heap.size() && this->heap[l] < this->heap[i])
             smallest = l;
-        if(r < this->heap.size() && this->heap[r] < this->heap[smallest])
+        if (r < this->heap.size() && this->heap[r] < this->heap[smallest])
             smallest = r;
-        if(smallest != i) {
+        if (smallest != i) {
             swap(this->heap[i], this->heap[smallest]);
             this->heapify(smallest);
         }
@@ -49,14 +49,14 @@ struct MinHeap {
 };
 
 int main() {
-    MinHeap *heap = new MinHeap();
+    MinHeap* heap = new MinHeap();
     heap->insert(3);
     heap->insert(7);
     heap->insert(6);
     heap->insert(5);
     heap->insert(12);
     heap->insert(5);
-    while(heap->heap.size() != 0) {
+    while (heap->heap.size() != 0) {
         cout << heap->extactMin() << " ";
     }
     return 0;

@@ -4,10 +4,9 @@ using namespace std;
 struct Node
 {
 	char value;
-	Node *prev;
+	Node* prev;
 
-	Node(char value)
-	{
+	Node(char value) {
 		this->value = value;
 		this->prev = nullptr;
 	}
@@ -15,37 +14,28 @@ struct Node
 
 struct Stack
 {
-	Node *top;
+	Node* top;
 	int size;
-	Stack()
-	{
+	Stack() {
 		this->top = nullptr;
 	}
 
-	void push(char value)
-	{
-		Node *newNode = new Node(value);
-		if (this->top == nullptr)
-		{
+	void push(char value) {
+		Node* newNode = new Node(value);
+		if (this->top == nullptr) {
 			this->top = newNode;
-		}
-		else
-		{
+		} else {
 			newNode->prev = this->top;
 			this->top = newNode;
 		}
 		this->size++;
 	}
 
-	char pop()
-	{
-		if (this->top == nullptr)
-		{
+	char pop() {
+		if (this->top == nullptr) {
 			cout << "Stack is empty" << endl;
 			return '-';
-		}
-		else
-		{
+		} else {
 			char temp = this->top->value;
 			this->top = this->top->prev;
 			this->size--;
@@ -53,17 +43,12 @@ struct Stack
 		}
 	}
 
-	void display()
-	{
-		if (this->top == nullptr)
-		{
+	void display() {
+		if (this->top == nullptr) {
 			cout << "Stack is empty" << endl;
-		}
-		else
-		{
-			Node *temp = this->top;
-			while (temp != nullptr)
-			{
+		} else {
+			Node* temp = this->top;
+			while (temp != nullptr) {
 				cout << temp->value << " ";
 				temp = temp->prev;
 			}
@@ -71,44 +56,34 @@ struct Stack
 		}
 	}
 
-	bool isEmpty()
-	{
+	bool isEmpty() {
 		return this->size == 0;
 	}
 };
 
-int main()
-{
+int main() {
 	string s;
 	cin >> s;
-	Stack *st = new Stack();
+	Stack* st = new Stack();
 	string ans;
-	for (auto c : s)
-	{
-		if (c != ']')
-		{
+	for (auto c : s) {
+		if (c != ']') {
 			st->push(c);
-		}
-		else
-		{
+		} else {
 			string temp = "";
-			while (!st->isEmpty() && st->top->value != '[')
-			{
+			while (!st->isEmpty() && st->top->value != '[') {
 				temp = st->top->value + temp;
 				st->pop();
 			}
-			if (!st->isEmpty())
-			{
+			if (!st->isEmpty()) {
 				st->pop();
 				string k = "";
-				while (!st->isEmpty() and isdigit(st->top->value))
-				{
+				while (!st->isEmpty() and isdigit(st->top->value)) {
 					k = st->top->value + k;
 					st->pop();
 				}
 				int digit = stoi(k);
-				while (digit--)
-				{
+				while (digit--) {
 					for (char x : temp)
 						st->push(x);
 				}

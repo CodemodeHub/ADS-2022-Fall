@@ -3,7 +3,7 @@ using namespace std;
 
 struct ListNode {
 	int val;
-	ListNode *next;
+	ListNode* next;
 
 	ListNode() {
 		this->val = 0;
@@ -15,16 +15,15 @@ struct ListNode {
 		this->next = nullptr;
 	}
 
-	ListNode(int val, ListNode *next) {
+	ListNode(int val, ListNode* next) {
 		this->val = val;
 		this->next = next;
 	}
 };
 
-int main()
-{
-	ListNode *myNode1 = new ListNode(22);
-	ListNode *myNode2 = new ListNode(5, myNode1);
+int main() {
+	ListNode* myNode1 = new ListNode(22);
+	ListNode* myNode2 = new ListNode(5, myNode1);
 	cout << myNode1->val << " " << myNode2->val << endl;
 	cout << myNode2->next->val;
 	return 0;

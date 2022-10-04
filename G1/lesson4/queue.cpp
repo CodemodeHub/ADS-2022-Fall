@@ -25,7 +25,7 @@ struct Queue {
     }
     void push(int value) {
         ListNode* newNode = new ListNode(value);
-        if(this->size == 0) {
+        if (this->size == 0) {
             this->front = newNode;
             this->back = newNode;
         } else {
@@ -35,8 +35,8 @@ struct Queue {
         this->size++;
     }
     int pop() {
-        if(this->size == 0) {
-            cout<<"Queue is empty\n";
+        if (this->size == 0) {
+            cout << "Queue is empty\n";
             return INT_MIN;
         } else {
             int result = this->front->value;
@@ -54,14 +54,14 @@ struct Queue {
 
 int main() {
     Queue* q = new Queue();
-    cout<<q->pop()<<endl;
+    cout << q->pop() << endl;
     q->push(5);
     q->push(2);
     q->push(3);
     q->push(4);
     q->push(1);
-    while(!q->isEmpty()){
-        cout<<q->pop()<<endl;
+    while (!q->isEmpty()) {
+        cout << q->pop() << endl;
     }
     return 0;
 }

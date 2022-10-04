@@ -4,72 +4,59 @@ using namespace std;
 struct Node
 {
 	int val;
-	Node *next;
+	Node* next;
 
-	Node(int val)
-	{
+	Node(int val) {
 		this->val = val;
 	}
 };
 
 struct Queue
 {
-	Node *beti;
-	Node *koteni;
+	Node* beti;
+	Node* koteni;
 	int size;
 
-	Queue()
-	{
+	Queue() {
 		beti = nullptr;
 		koteni = nullptr;
 		size = 0;
 	}
 
-	void pop()
-	{
-		if (this->isEmpty())
-		{
+	void pop() {
+		if (this->isEmpty()) {
 			throw std::invalid_argument("queue is empty");
-		}
-		else
-		{
-			Node *toDel = beti;
+		} else {
+			Node* toDel = beti;
 			beti = beti->next;
 			delete (toDel);
 			size--;
 		}
 	}
 
-	int front()
-	{
+	int front() {
 		return beti->val;
 	}
 
-	void push(int val)
-	{
-		if (this->isEmpty())
-		{
-			Node *newNode = new Node(val);
+	void push(int val) {
+		if (this->isEmpty()) {
+			Node* newNode = new Node(val);
 			beti = newNode;
 			koteni = newNode;
-		}
-		else
-		{
-			Node *newNode = new Node(val);
+		} else {
+			Node* newNode = new Node(val);
 			koteni->next = newNode;
 			koteni = newNode;
 		}
 		size++;
 	}
 
-	bool isEmpty()
-	{
+	bool isEmpty() {
 		return size == 0;
 	}
 };
 
-int main()
-{
+int main() {
 	Queue q;
 	q.push(1);
 	q.push(2);
@@ -83,8 +70,7 @@ int main()
 	q.push(10);
 	q.push(10);
 	q.push(10);
-	while (!q.isEmpty())
-	{
+	while (!q.isEmpty()) {
 		cout << q.front() << " ";
 		q.pop();
 	}

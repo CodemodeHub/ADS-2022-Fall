@@ -4,9 +4,8 @@ using namespace std;
 struct Node
 {
 	int val;
-	Node *next;
-	Node(int val)
-	{
+	Node* next;
+	Node(int val) {
 		this->val = val;
 		this->next = nullptr;
 	}
@@ -15,64 +14,49 @@ struct Node
 struct Stack
 {
 	int size;
-	Node *top;
+	Node* top;
 
-	Stack()
-	{
+	Stack() {
 		size = 0;
 		top = nullptr;
 	}
 
-	void pop()
-	{
-		if (this->isEmpty())
-		{
+	void pop() {
+		if (this->isEmpty()) {
 			throw std::invalid_argument("error: stack is empty");
-		}
-		else
-		{
-			Node *toDelete = top;
+		} else {
+			Node* toDelete = top;
 			top = top->next;
 			size--;
 			delete (toDelete);
 		}
 	}
 
-	int peek()
-	{
-		if (this->isEmpty())
-		{
+	int peek() {
+		if (this->isEmpty()) {
 			throw std::invalid_argument("error: stack is empty");
-		}
-		else
-		{
+		} else {
 			return top->val;
 		}
 	}
 
-	void push(int val)
-	{
-		Node *newNode = new Node(val);
-		if (this->isEmpty())
-		{
+	void push(int val) {
+		Node* newNode = new Node(val);
+		if (this->isEmpty()) {
 			top = newNode;
-		}
-		else
-		{
+		} else {
 			newNode->next = top;
 			top = newNode;
 		}
 		size++;
 	}
 
-	bool isEmpty()
-	{
+	bool isEmpty() {
 		return size == 0;
 	}
 };
 
-int main()
-{
+int main() {
 	Stack st;
 	st.push(1);
 	st.push(2);

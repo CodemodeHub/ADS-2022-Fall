@@ -2,10 +2,9 @@
 #include <map>
 using namespace std;
 
-int main()
-{
+int main() {
 
-	int nums[6] = {2, 6, 1, 12, 8, 4};
+	int nums[6] = { 2, 6, 1, 12, 8, 4 };
 	int target = 5;
 	// (2, 5)
 	map<int, int> m;

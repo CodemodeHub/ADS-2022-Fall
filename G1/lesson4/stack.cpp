@@ -23,7 +23,7 @@ struct Stack {
     }
     void push(int value) {
         ListNode* newNode = new ListNode(value);
-        if(this->top==nullptr) {
+        if (this->top == nullptr) {
             this->top = newNode;
             this->size++;
         } else {
@@ -33,8 +33,8 @@ struct Stack {
         }
     }
     int pop() {
-        if(this->top == nullptr) {
-            cout<<"Stack is empty\n";
+        if (this->top == nullptr) {
+            cout << "Stack is empty\n";
             return INT_MIN;
         } else {
             int result = this->top->value;
@@ -52,14 +52,14 @@ struct Stack {
 
 int main() {
     Stack* stack = new Stack();
-    cout<<stack->pop()<<endl;
+    cout << stack->pop() << endl;
     stack->push(5);
     stack->push(2);
     stack->push(3);
     stack->push(4);
     stack->push(1);
-    while(!stack->isEmpty()){
-        cout<<stack->pop()<<endl;
+    while (!stack->isEmpty()) {
+        cout << stack->pop() << endl;
     }
     return 0;
 }

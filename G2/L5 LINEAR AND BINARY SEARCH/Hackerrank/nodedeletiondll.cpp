@@ -4,11 +4,10 @@ using namespace std;
 struct ListNode
 {
 	int val;
-	ListNode *next;
-	ListNode *prev;
+	ListNode* next;
+	ListNode* prev;
 
-	ListNode(int val)
-	{
+	ListNode(int val) {
 		this->val = val;
 		this->next = nullptr;
 		this->prev = nullptr;
@@ -18,63 +17,53 @@ struct ListNode
 struct DoublyLinkedList
 {
 	int size;
-	ListNode *head;
-	ListNode *tail;
+	ListNode* head;
+	ListNode* tail;
 
-	DoublyLinkedList()
-	{
+	DoublyLinkedList() {
 		this->size = 0;
 		this->head = nullptr;
 		this->tail = nullptr;
 	}
 
-	void push_front(int val)
-	{
+	void push_front(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			temp->next = this->head;
 			this->head->prev = temp;
 			this->head = temp;
 		}
 	}
 
-	void push_back(int val)
-	{
+	void push_back(int val) {
 		this->size++;
-		ListNode *temp = new ListNode(val);
-		if (this->head == nullptr)
-		{
+		ListNode* temp = new ListNode(val);
+		if (this->head == nullptr) {
 			this->head = temp;
 			this->tail = temp;
-		}
-		else
-		{
+		} else {
 			this->tail->next = temp;
 			temp->prev = this->tail;
 			this->tail = temp;
 		}
 	}
 
-	void removeEveryKthNode(int k)
-	{
-		ListNode *cur = head;
+	void removeEveryKthNode(int k) {
+		ListNode* cur = head;
 		int index = 1;
 		while (cur != nullptr) {
 			if (index % k == 0) {
 				if (cur->next == nullptr) {
-					ListNode *toDel = cur;
+					ListNode* toDel = cur;
 					cur->prev->next = nullptr;
 					cur = cur->next;
 					delete (toDel);
 				} else {
-					ListNode *toDel = cur;
+					ListNode* toDel = cur;
 					cur->prev->next = cur->next;
 					cur->next->prev = cur->prev;
 					cur = cur->next;
@@ -87,11 +76,9 @@ struct DoublyLinkedList
 		}
 	}
 
-	void print()
-	{
-		ListNode *cur = head;
-		while (cur)
-		{
+	void print() {
+		ListNode* cur = head;
+		while (cur) {
 			cout << cur->val << " ";
 			cur = cur->next;
 		}
@@ -99,8 +86,7 @@ struct DoublyLinkedList
 	}
 };
 
-int main()
-{
+int main() {
 	int n, m, k;
 	cin >> n >> k;
 	DoublyLinkedList dll;

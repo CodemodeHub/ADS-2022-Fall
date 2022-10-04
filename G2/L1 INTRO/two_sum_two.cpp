@@ -1,17 +1,12 @@
-vector<int> twoSum(vector<int> &nums, int target)
-{
+vector<int> twoSum(vector<int>& nums, int target) {
 	map<int, int> m;
 	vector<int> answer(2);
-	for (int i = 0; i < nums.size(); ++i)
-	{
-		if (m.find(target - nums[i]) != m.end())
-		{
+	for (int i = 0; i < nums.size(); ++i) {
+		if (m.find(target - nums[i]) != m.end()) {
 			answer[0] = m[target - nums[i]];
 			answer[1] = i;
 			break;
-		}
-		else
-		{
+		} else {
 			m[nums[i]] = i;
 		}
 	}
