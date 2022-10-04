@@ -56,6 +56,12 @@ private:
 		return _rightmost(cur->right);
 	}
 
+	int _leftmost(Node* cur) {
+		if (!cur) return -1;
+		if (!cur->left) return cur->val;
+		return _leftmost(cur->left);
+	}
+
 	Node* _remove(Node* cur, int target) {
 		if (!cur) return nullptr;
 		if (cur->val == target) {
@@ -73,6 +79,8 @@ private:
 			} else if (cur->right && cur->left) {
 				cur->val = _rightmost(cur->left);
 				cur->left = _remove(cur->left, cur->val);
+				// cur->val = _leftmost(cur->right);
+				// cur->right = _remove(cur->right, cur->val);
 			}
 		} else if (cur->val < target) {
 			cur->right = _remove(cur->right, target);
@@ -93,7 +101,7 @@ private:
 		if (!cur) return nullptr;
 		if (cur->val == target) return cur;
 		if (cur->val > target) return _search(cur->left, target);
-		return _search(cur->right, target);
+		if (cur->val < target) return _search(cur->right, target);
 	}
 
 public:
@@ -136,11 +144,13 @@ public:
 
 int main() {
 	BST bst;
-	bst.insert(10);
-	bst.insert(20);
 	bst.insert(30);
+	bst.insert(20);
 	bst.insert(40);
-	bst.insert(50);
+	bst.insert(60);
+	bst.insert(10);
+	bst.insert(25);
+	bst.insert(35);
 	bst.inorder();
 	bst.postorder();
 	bst.preorder();
