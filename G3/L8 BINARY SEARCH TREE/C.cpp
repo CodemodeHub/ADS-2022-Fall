@@ -117,7 +117,7 @@ public:
 	void preorder() {
 		_preorder(root);
 		cout << endl;
-	}	
+	}
 
 	void postorder() {
 		_postorder(root);
@@ -145,20 +145,24 @@ public:
 	int getSize() {
 		return _getSize(root);
 	}
+
+	void solve(int k) {
+		Node* node = search(k);
+		_preorder(node);
+	}
 };
 
 int main() {
 	BST bst;
 	int n;
 	cin >> n;
-	int node;
+	int node, k;
 	for (int i = 0; i < n; i++) {
 		cin >> node;
 		bst.insert(node);
 	}
-	cout << bst.getRoot()->val;
-	
+	cin >> k;
+	bst.solve(k);
+
 	return 0;
 }
-// 8
-// 5 3 4 8 11 6 1 2
