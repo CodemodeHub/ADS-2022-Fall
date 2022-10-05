@@ -56,6 +56,12 @@ private:
 		return _rightmost(cur->right);
 	}
 
+	int _leftmost(Node* cur) {
+		if (!cur) return -1;
+		if (!cur->left) return cur->val;
+		return _leftmost(cur->left);
+	}
+
 	Node* _remove(Node* cur, int target) {
 		if (!cur) return nullptr;
 		if (cur->val == target) {
@@ -73,6 +79,8 @@ private:
 			} else if (cur->right && cur->left) {
 				cur->val = _rightmost(cur->left);
 				cur->left = _remove(cur->left, cur->val);
+				// cur->val = _leftmost(cur->right);
+				// cur->right = _remove(cur->right, cur->val);
 			}
 		} else if (cur->val < target) {
 			cur->right = _remove(cur->right, target);
@@ -84,16 +92,16 @@ private:
 		return cur;
 	}
 
-	int _getHeight(Node* node) {
+	int _getSize(Node* node) {
 		if (!node) return 0;
-		return _getHeight(node->left) + _getHeight(node->right) + 1;
+		return _getSize(node->left) + _getSize(node->right) + 1;
 	}
 
 	Node* _search(Node* cur, int target) {
 		if (!cur) return nullptr;
 		if (cur->val == target) return cur;
 		if (cur->val > target) return _search(cur->left, target);
-		return _search(cur->right, target);
+		if (cur->val < target) return _search(cur->right, target);
 	}
 
 public:
@@ -105,12 +113,12 @@ public:
 		_inorder(root);
 		cout << endl;
 	}
-	
+
 	void preorder() {
 		_preorder(root);
 		cout << endl;
 	}
-	
+
 	void postorder() {
 		_postorder(root);
 		cout << endl;
@@ -122,6 +130,10 @@ public:
 	}
 
 	void remove(int target) {
+		if (getSize() == 1 && root->val == target) {
+			root = nullptr;
+			return;
+		}
 		_remove(root, target);
 	}
 
@@ -129,27 +141,28 @@ public:
 		return _search(root, target);
 	}
 
-	void getHeight() {
-		cout << _getHeight(root) << endl;
+	int getSize() {
+		return _getSize(root);
 	}
 };
 
 int main() {
 	BST bst;
-	bst.insert(10);
-	bst.insert(20);
 	bst.insert(30);
+	bst.insert(20);
 	bst.insert(40);
-	bst.insert(50);
+	bst.insert(60);
+	bst.insert(10);
+	bst.insert(25);
+	bst.insert(35);
 	bst.inorder();
 	bst.postorder();
 	bst.preorder();
-	
+
 	// cout << bst.search(40) << endl;
 	bst.remove(40);
 	// cout << bst.search(40) << endl;
 	bst.inorder();
-	bst.getHeight();
 
 	return 0;
 }
