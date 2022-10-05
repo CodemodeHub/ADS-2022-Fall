@@ -134,7 +134,7 @@ public:
 			root = nullptr;
 			return;
 		}
-		_remove(root, target);
+		root = _remove(root, target);
 	}
 
 	Node* search(int target) {

@@ -130,11 +130,7 @@ public:
 	}
 
 	void remove(int target) {
-		if (getSize() == 1 && root->val == target) {
-			root = nullptr;
-			return;
-		}
-		_remove(root, target);
+		root = _remove(root, target);
 	}
 
 	Node* search(int target) {

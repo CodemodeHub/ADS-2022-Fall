@@ -130,7 +130,7 @@ public:
 	}
 
 	void remove(int target) {
-		_remove(root, target);
+		root = _remove(root, target);
 	}
 
 	Node* search(int target) {
