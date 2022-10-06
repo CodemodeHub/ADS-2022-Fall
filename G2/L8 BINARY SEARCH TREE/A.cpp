@@ -92,9 +92,9 @@ private:
 		return cur;
 	}
 
-	int _getHeight(Node* node) {
+	int _getSize(Node* node) {
 		if (!node) return 0;
-		return _getHeight(node->left) + _getHeight(node->right) + 1;
+		return _getSize(node->left) + _getSize(node->right) + 1;
 	}
 
 	Node* _search(Node* cur, int target) {
@@ -107,10 +107,6 @@ private:
 public:
 	BST() {
 		this->root = nullptr;
-	}
-
-	Node* getRoot() {
-		return root;
 	}
 
 	void inorder() {
@@ -134,15 +130,19 @@ public:
 	}
 
 	void remove(int target) {
-		_remove(root, target);
+		if (getSize() == 1 && root->val == target) {
+			root = nullptr;
+			return;
+		}
+		root = _remove(root, target);
 	}
 
 	Node* search(int target) {
 		return _search(root, target);
 	}
 
-	void getHeight() {
-		cout << _getHeight(root) << endl;
+	int getSize() {
+		return _getSize(root);
 	}
 
 	bool routeFound(string route) {

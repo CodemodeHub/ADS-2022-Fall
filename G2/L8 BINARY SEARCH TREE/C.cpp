@@ -130,7 +130,7 @@ public:
 	}
 
 	void remove(int target) {
-		_remove(root, target);
+		root = _remove(root, target);
 	}
 
 	Node* search(int target) {
@@ -146,6 +146,8 @@ public:
 		_preorder(targetNode);
 	}
 };
+
+
 
 int main() {
 	BST bst;

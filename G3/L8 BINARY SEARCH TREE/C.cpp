@@ -1,6 +1,3 @@
-// DFS - depth-first search
-// BFS - breadth-first search
-
 #include<iostream>
 using namespace std;
 
@@ -95,16 +92,16 @@ private:
 		return cur;
 	}
 
-	int _getHeight(Node* node) {
+	int _getSize(Node* node) {
 		if (!node) return 0;
-		return _getHeight(node->left) + _getHeight(node->right) + 1;
+		return _getSize(node->left) + _getSize(node->right) + 1;
 	}
 
 	Node* _search(Node* cur, int target) {
 		if (!cur) return nullptr;
 		if (cur->val == target) return cur;
 		if (cur->val > target) return _search(cur->left, target);
-		if (cur->val < target) return _search(cur->right, target);
+		return _search(cur->right, target);
 	}
 
 public:
@@ -129,40 +126,43 @@ public:
 
 	void insert(int val) {
 		Node* newNode = _insert(root, val);
-		if (!root) root = newNode;
+		// if (!root) root = newNode;
+		if (root == nullptr) root = newNode;
 	}
 
 	void remove(int target) {
-		_remove(root, target);
+		root = _remove(root, target);
 	}
 
 	Node* search(int target) {
 		return _search(root, target);
 	}
 
-	void getHeight() {
-		cout << _getHeight(root) << endl;
+	Node* getRoot() {
+		return root;
+	}
+
+	int getSize() {
+		return _getSize(root);
+	}
+
+	void solve(int k) {
+		Node* node = search(k);
+		_preorder(node);
 	}
 };
 
 int main() {
 	BST bst;
-	const int n = 16;
-	int ar[16] = { 13, 9, 3, 7, 6, 16, 1, 11, 12, 10, 4, 2, 14, 5, 8, 15 };
+	int n;
+	cin >> n;
+	int node, k;
 	for (int i = 0; i < n; i++) {
-		bst.insert(ar[i]);
+		cin >> node;
+		bst.insert(node);
 	}
-
-	
+	cin >> k;
+	bst.solve(k);
 
 	return 0;
-}
-
-queue<Node*> q;
-q.push(this->root);
-while (!q.empty()) {
-	int node = q.pop();
-	cout << node->val;
-	q.push(node->left);
-	q.push(node->right);
 }

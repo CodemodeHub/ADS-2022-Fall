@@ -92,9 +92,9 @@ private:
 		return cur;
 	}
 
-	int _getHeight(Node* node) {
+	int _getSize(Node* node) {
 		if (!node) return 0;
-		return _getHeight(node->left) + _getHeight(node->right) + 1;
+		return _getSize(node->left) + _getSize(node->right) + 1;
 	}
 
 	Node* _search(Node* cur, int target) {
@@ -113,12 +113,12 @@ public:
 		_inorder(root);
 		cout << endl;
 	}
-	
+
 	void preorder() {
 		_preorder(root);
 		cout << endl;
 	}
-	
+
 	void postorder() {
 		_postorder(root);
 		cout << endl;
@@ -130,15 +130,15 @@ public:
 	}
 
 	void remove(int target) {
-		_remove(root, target);
+		root = _remove(root, target);
 	}
 
 	Node* search(int target) {
 		return _search(root, target);
 	}
 
-	void getHeight() {
-		cout << _getHeight(root) << endl;
+	int getSize() {
+		return _getSize(root);
 	}
 };
 
@@ -154,12 +154,11 @@ int main() {
 	bst.inorder();
 	bst.postorder();
 	bst.preorder();
-	
+
 	// cout << bst.search(40) << endl;
 	bst.remove(40);
 	// cout << bst.search(40) << endl;
 	bst.inorder();
-	bst.getHeight();
 
 	return 0;
 }

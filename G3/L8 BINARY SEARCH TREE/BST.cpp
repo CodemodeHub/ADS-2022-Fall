@@ -56,6 +56,12 @@ private:
 		return _rightmost(cur->right);
 	}
 
+	int _leftmost(Node* cur) {
+		if (!cur) return -1;
+		if (!cur->left) return cur->val;
+		return _leftmost(cur->left);
+	}
+
 	Node* _remove(Node* cur, int target) {
 		if (!cur) return nullptr;
 		if (cur->val == target) {
@@ -73,6 +79,8 @@ private:
 			} else if (cur->right && cur->left) {
 				cur->val = _rightmost(cur->left);
 				cur->left = _remove(cur->left, cur->val);
+				// cur->val = _leftmost(cur->right);
+				// cur->right = _remove(cur->right, cur->val);
 			}
 		} else if (cur->val < target) {
 			cur->right = _remove(cur->right, target);
@@ -84,9 +92,9 @@ private:
 		return cur;
 	}
 
-	int _getHeight(Node* node) {
+	int _getSize(Node* node) {
 		if (!node) return 0;
-		return _getHeight(node->left) + _getHeight(node->right) + 1;
+		return _getSize(node->left) + _getSize(node->right) + 1;
 	}
 
 	Node* _search(Node* cur, int target) {
@@ -105,12 +113,12 @@ public:
 		_inorder(root);
 		cout << endl;
 	}
-	
+
 	void preorder() {
 		_preorder(root);
 		cout << endl;
-	}
-	
+	}	
+
 	void postorder() {
 		_postorder(root);
 		cout << endl;
@@ -118,38 +126,39 @@ public:
 
 	void insert(int val) {
 		Node* newNode = _insert(root, val);
-		if (!root) root = newNode;
+		// if (!root) root = newNode;
+		if (root == nullptr) root = newNode;
 	}
 
 	void remove(int target) {
-		_remove(root, target);
+		root = _remove(root, target);
 	}
 
 	Node* search(int target) {
 		return _search(root, target);
 	}
 
-	void getHeight() {
-		cout << _getHeight(root) << endl;
+	Node* getRoot() {
+		return root;
+	}
+
+	int getSize() {
+		return _getSize(root);
 	}
 };
 
 int main() {
 	BST bst;
-	bst.insert(10);
-	bst.insert(20);
-	bst.insert(30);
-	bst.insert(40);
-	bst.insert(50);
-	bst.inorder();
-	bst.postorder();
-	bst.preorder();
+	int n;
+	cin >> n;
+	int node;
+	for (int i = 0; i < n; i++) {
+		cin >> node;
+		bst.insert(node);
+	}
+	cout << bst.getRoot()->val;
 	
-	// cout << bst.search(40) << endl;
-	bst.remove(40);
-	// cout << bst.search(40) << endl;
-	bst.inorder();
-	bst.getHeight();
-
 	return 0;
 }
+// 8
+// 5 3 4 8 11 6 1 2
