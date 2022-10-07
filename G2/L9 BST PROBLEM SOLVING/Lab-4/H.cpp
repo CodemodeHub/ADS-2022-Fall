@@ -1,7 +1,5 @@
 #include<iostream>
 #include<vector>
-#include<cmath>
-#include<algorithm>
 using namespace std;
 
 struct Node {
@@ -22,9 +20,9 @@ private:
 
 	void _inorder(Node* node) {
 		if (!node) return;
-		_inorder(node->left);
-		cout << node->val << " ";
 		_inorder(node->right);
+		cout << node->val << " ";
+		_inorder(node->left);
 	}
 
 	void _preorder(Node* node) {
@@ -148,43 +146,33 @@ public:
 		return root;
 	}
 
-	int getHeight(Node* node) {
-		if (!node) return 0;
-		int left = getHeight(node->left);
-		int right = getHeight(node->right);
-		return max(left, right) + 1;
-	}
-
-	void getSumByLevels(Node* cur, int lvl, vector<int>& v) {
+	void changeNodes(Node* cur, int& sum) {
 		if (!cur) return;
-		v[lvl] += cur->val;
-		getSumByLevels(cur->left, lvl + 1, v);
-		getSumByLevels(cur->right, lvl + 1, v);
+		changeNodes(cur->right, sum);
+		sum += cur->val;
+		cur->val = sum;
+		changeNodes(cur->left, sum);
 	}
-};
 
-void build_balanced_bst(vector<int> initial, vector<int>& answer, int left, int right) {
-	if (left <= right) {
-		int mid = left + (right - left) / 2;
-		answer.push_back(initial[mid]);
-		build_balanced_bst(initial, answer, left, mid - 1);
-		build_balanced_bst(initial, answer, mid + 1, right);
+	void changeNodesOuter() {
+		int sum = 0;
+		changeNodes(root, sum);
 	}
-}
+
+	
+};
 
 int main() {
 	BST bst;
-	int n, temp;
+	int n;
 	cin >> n;
-	int size = pow(2, n) - 1;
-	vector<int> v(size), ans;
-	for (int i = 0; i < size; i++) {
-		cin >> v[i];
+	while (n--) {
+		int node;
+		cin >> node;
+		bst.insert(node);
 	}
-	sort(v.begin(), v.end());
-	build_balanced_bst(v, ans, 0, size - 1);
-	for (int i = 0; i < size; i++) {
-		cout << ans[i] << " ";
-	}
+	bst.changeNodesOuter();
+	bst.inorder();
+
 	return 0;
 }
