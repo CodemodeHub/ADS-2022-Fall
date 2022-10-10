@@ -54,6 +54,9 @@ struct MinHeap {
     bool empty() {
         return this->heap.size() == 0;
     }
+    int size() {
+        return this->heap.size();
+    }
 };
 
 bool check(vector<int> heap, int m) {
@@ -71,7 +74,7 @@ int main() {
         heap.insert(value);
     }
     int result = 0;
-    while(heap.displayMin() < m && heap.heap.size() > 1) {
+    while(heap.displayMin() < m && heap.size() > 1) {
         result++;
         int minimal = heap.extactMin();
         int second_minimal = heap.extactMin();
