@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 struct MaxHeap {
 	vector<int> heap;
-
 	int parent(int i) {
 		return (i - 1) / 2;
 	}
