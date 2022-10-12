@@ -27,9 +27,7 @@ vector<int> merge(vector<int> left, vector<int> right) {
 
 vector<int> mergeSort(vector<int> a, int l, int r) {
 	if (l == r) {
-		vector<int> res;
-		res.push_back(a[l]);
-		return res;
+		return { a[l] };
 	}
 	int m = l + (r - l) / 2;
 	vector<int> left = mergeSort(a, l, m);
