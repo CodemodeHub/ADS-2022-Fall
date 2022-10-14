@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-const int d = 26;
+const int d = 31;
 vector<int> search(string s, string pattern, int q = 1e9 + 7) {
 	int p = 0, t = 0, h = 1, i, j;
 	vector<int> ans;
