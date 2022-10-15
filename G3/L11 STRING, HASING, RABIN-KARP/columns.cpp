@@ -24,11 +24,19 @@ void quick_sort(int ar[], int left, int right) {
 
 int main() {
 
-	int ar[] = { 8, 4, 2, 13, 5 };
-	int n = sizeof(ar) / sizeof(ar[0]);
-	quick_sort(ar, 0, n - 1);
-	for (auto i : ar) {
-		cout << i << " ";
+	int n, m;
+	cin >> n >> m;
+	int ar[n][m];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			cin >> ar[i][j];
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			cout << ar[i][j] << " ";
+		}
+		cout << endl;
 	}
 	return 0;
 }
