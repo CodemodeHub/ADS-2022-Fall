@@ -26,12 +26,15 @@ vector<int> findSubstrings(string txt, string pat) {
 }
 
 int main() {
-	string txt = "ABCABD";
-	string pat = "AB";
-	vector<int> indices = findSubstrings(txt, pat);
-	for (auto i : indices) {
-		cout << i << " ";
+	int n;
+	cin >> n;
+	while (n--) {
+		string s;
+		int m;
+		cin >> s >> m;
+		vector<int> pi = prefixFunction(s);
+		int k = s.size() - pi.back();
+		cout << k * (m - 1) + s.size() << endl;
 	}
-	// O(m + n) m - txt.size(), n - pat.size()
 	return 0;
 }

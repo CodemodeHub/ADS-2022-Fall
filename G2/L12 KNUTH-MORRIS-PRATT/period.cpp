@@ -26,12 +26,19 @@ vector<int> findSubstrings(string txt, string pat) {
 }
 
 int main() {
-	string txt = "ABCABD";
-	string pat = "AB";
-	vector<int> indices = findSubstrings(txt, pat);
-	for (auto i : indices) {
-		cout << i << " ";
+	string yaslan, darina;
+	cin >> yaslan >> darina;
+	darina += darina;
+	vector<int> indices = findSubstrings(darina, yaslan);
+	if (indices.empty()) {
+		cout << -1;
+		return 0;
 	}
-	// O(m + n) m - txt.size(), n - pat.size()
+	cout << indices[0];
 	return 0;
 }
+
+/*
+abab
+abab
+*/
