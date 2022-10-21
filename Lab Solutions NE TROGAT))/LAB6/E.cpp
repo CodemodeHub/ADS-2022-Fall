@@ -1,4 +1,4 @@
-#include <bits\stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int partition(int ar[], int left, int right) {
@@ -23,6 +23,8 @@ void quicksort(int ar[], int left, int right) {
 }
 
 int main() {
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
 	int m, n;
 	cin >> m >> n;
 	int ar[n][m];
@@ -42,3 +44,9 @@ int main() {
 	}
 	return 0;
 }
+// 5 4
+// 1 2 3 4
+// 5 6 7 8
+// 9 10 11 12
+// 13 14 15 16
+// 17 18 19 20

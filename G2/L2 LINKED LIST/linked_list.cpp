@@ -6,19 +6,9 @@ struct ListNode
 	int val;
 	ListNode* next;
 
-	ListNode() {
-		this->val = 0;
-		this->next = nullptr; // or type NUll instead of nullptr
-	}
-
 	ListNode(int val) {
 		this->val = val;
 		this->next = nullptr;
-	}
-
-	ListNode(int val, ListNode* next) {
-		this->val = val;
-		this->next = next;
 	}
 };
 
@@ -32,6 +22,14 @@ struct LinkedList
 		this->size = 0;
 		this->head = nullptr;
 		this->tail = nullptr;
+	}
+
+	ListNode* findTail() {
+		ListNode* cur = head;
+		while (cur->next) {
+			cur = cur->next;
+		}
+		return cur;
 	}
 
 	void addAtHead(int val) {
