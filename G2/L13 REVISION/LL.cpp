@@ -182,7 +182,7 @@ int main() {
 	LL ll;
 	int n;
 	cin >> n;
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < n; i++) {
 		int x;
 		cin >> x;
 		ll.push_back(x);
@@ -190,5 +190,4 @@ int main() {
 	ll.print();
 	cout << ll.middleNode()->val << endl;
 	ll.print();
-	
 }
