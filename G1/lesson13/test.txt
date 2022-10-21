@@ -1,0 +1,16 @@
+s = 'abcabca'
+pref = {
+    'a', 'ab', 'abc', 'abca', 'abcab', 'abcabc', 'abcabca'
+}
+suff = {
+    'a', 'ca', 'bca', 'abca', 'cabca', 'bcabca', 'abcabca'
+}
+fun pref() -> arr[int]
+arr[i] -> s.substr(0, i)
+arr[0] -> 'a' -> 0
+arr[1] -> 'ab' -> 0
+arr[2] -> 'abc' -> 0
+arr[3] -> 'abca' -> 1
+arr[4] -> 'abcab' -> 2 
+arr[5] -> 'abcabc' -> 3 
+arr[6] -> 'abcabca' -> 4
