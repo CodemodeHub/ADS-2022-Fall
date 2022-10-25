@@ -13,6 +13,22 @@ vector<int> prefix_function (string s) {
     // O(n)
 	return pi;
 }
+int main() {
+    string s;
+    cin>>s;
+    vector<int> pi = prefix_function(s);
+    int p = 0;
+    for(int i = 0; i < pi.size(); i++)
+        if(pi[i] != 0){
+            p = i;
+            break;
+        }
+    if(pi[pi.size() - 1] == pi.size() - p)
+        cout<<pi.size() / p<<endl;
+    else
+        cout<<1<<endl;
+    return 0;
+}
 /*
 s = "abcabca"
 pi = {0,0,0,1,2,3,4}
