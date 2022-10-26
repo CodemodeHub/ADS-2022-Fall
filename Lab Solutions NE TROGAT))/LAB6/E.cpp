@@ -25,28 +25,22 @@ void quicksort(int ar[], int left, int right) {
 int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
-	int m, n;
-	cin >> m >> n;
-	int ar[n][m];
-	for (int i = 0; i < m; i++) {
-		for (int j = 0; j < n; j++) {
+	int n, m;
+	cin >> n >> m;
+	int ar[m][n];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
 			cin >> ar[j][i];
 		}
 	}
 	for (int i = 0; i < m; i++) {
-		quicksort(ar[i], 0, m - 1);
+		quicksort(ar[i], 0, n - 1);
 	}
-	for (int i = 0; i < m; i++) {
-		for (int j = 0; j < n; j++) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
 			cout << ar[j][i] << " ";
 		}
 		cout << "\n";
 	}
 	return 0;
 }
-// 5 4
-// 1 2 3 4
-// 5 6 7 8
-// 9 10 11 12
-// 13 14 15 16
-// 17 18 19 20
