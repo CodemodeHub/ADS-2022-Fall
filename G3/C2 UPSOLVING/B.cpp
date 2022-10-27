@@ -18,9 +18,9 @@ int binary_search(pair<int, double> ar[], int n, int k) {
 	while (left < right) {
 		mid = left + (right - left) / 2;
 		if (torkaet(ar[mid], k)) {
-			right = mid;
+			right = mid - 1;
 		} else if (!torkaet(ar[mid], k)) {
-			left = mid + 1;
+			left = mid;
 		}
 	}
 	return left;
