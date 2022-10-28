@@ -163,6 +163,18 @@ public:
 	}
 };
 
+void countTriangles(Node* node, vector<int>& ans) {
+	Node* left = node->left;
+	Node* right = node->right;
+	int i = 0;
+	while (left != nullptr && right != nullptr) {
+		ans[i]++;
+		left = left->left;
+		right = right->right;
+		i++;
+	}
+}
+
 int main() {
 	BST bst;
 	int n, node;
@@ -172,10 +184,29 @@ int main() {
 		cin >> node;
 		bst.insert(node);
 	}
-	bst.dfs(bst.getRoot(), ans);
+	
+	// bst.dfs(bst.getRoot(), ans);
+
+	queue<Node*> q;
+	q.push(bst.getRoot());
+	while (!q.empty()) {
+		Node* node = q.front();
+		q.pop();
+		countTriangles(node, ans);
+		if (node->left) q.push(node->left);
+		if (node->right) q.push(node->right);
+	}
+
 	for (auto i : ans) {
 		cout << i << " ";
 	}
 
 	return 0;
 }
+
+// 1. создать кью
+// 2. запушить рут
+// 3. запустить цикл вайл, пока кью не опустеет
+// * вытаскивать перед очереди, и чето делать
+// 4. внутри цикла если есть левый чайлд, пихнуть его в кью
+// 5. внутри цикла если есть правый чайлд, пихнуть его в кью
