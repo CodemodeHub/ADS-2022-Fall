@@ -12,15 +12,16 @@ void dfs(int v, int x) {
 	for (int i = 0; i < g[v].size(); i++) {
 		int u = g[v][i];
 		if (!visited[u]) {
-			components[x]++;
+			// components[x]++;
 			dfs(u, x);
 		}
 	}
 }
 
-void bfs(int v) {
+void bfs(int v, int x) {
 	queue<int> q;
 	q.push(v);
+	components[x]++;
 	visited[v] = true;
 	while (!q.empty()) {
 		int cur = q.front();
@@ -28,6 +29,7 @@ void bfs(int v) {
 			int u = g[cur][i];
 			if (!visited[u]) {
 				visited[u] = true;
+				components[x]++;
 				q.push(u);
 			}
 		}
@@ -53,7 +55,7 @@ int main() {
 	int x = 0;
 	for (int i = 0; i < m; i++) {
 		if (!visited[i]) {
-			dfs(i, x);
+			bfs(i, x);
 			x++;
 		}
 	}
