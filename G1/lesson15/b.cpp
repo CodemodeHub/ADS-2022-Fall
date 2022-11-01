@@ -2,7 +2,9 @@
 using namespace std;
 struct MinHeap {
     vector<int> heap;
-
+    MinHeap(int n) {
+        this->heap.resize(n);
+    }
     int parent(int i) {
         return (i - 1) / 2;
     }
@@ -30,14 +32,17 @@ struct MinHeap {
         int root = this->heap[0];
         this->heap[0] = this->heap[this->heap.size() - 1];
         this->heap.pop_back();
-        this->heapify(0);
+        this->heapify_down(0);
         return root;
     }
     void update(int i, int x) {
         this->heap[i] += x;
-        this->heapify(i);
+        if(heap[i] < heap[parent(i)])
+            heapify_up(i);
+        else
+            this->heapify_down(i);
     }
-    void heapify(int i) {
+    void heapify_down(int i) {
         int l = this->left(i);
         int r = this->right(i);
         int smallest = i;
@@ -47,13 +52,20 @@ struct MinHeap {
             smallest = r;
         if (smallest != i) {
             swap(this->heap[i], this->heap[smallest]);
-            this->heapify(smallest);
+            this->heapify_down(smallest);
+        }
+    }
+    void heapify_up(int i) {
+        int p = this->parent(i);
+        if(p > 0 && this->heap[p] > this->heap[i]) {
+            swap(this->heap[p], this->heap[i]);
+            this->heapify_up(p);
         }
     }
 };
 
 int main() {
-    MinHeap* heap = new MinHeap();
+    MinHeap* heap = new MinHeap(5);
     heap->insert(3);
     heap->insert(7);
     heap->insert(6);
