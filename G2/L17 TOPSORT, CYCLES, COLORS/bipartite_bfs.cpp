@@ -8,24 +8,23 @@ vector<vector<int> > g;
 vector<int> colors;
 
 bool isBipartite(int v) {
-	queue<pair<int, int> > q;
-	q.push({ v, 1 });
+	queue<int> q;
 	colors[v] = 1;
+	q.push(v);
 	while (!q.empty()) {
-		pair<int, int> u = q.front();
-		int val = u.first;
-		int col = u.second;
-		for (int i = 0; i < g[val].size(); i++) {
-			if (colors[g[val][i]] == col) {
+		int cur = q.front();
+		for (int i = 0; i < g[cur].size(); i++) {
+			int u = g[cur][i];
+			if (colors[u] == colors[cur]) {
 				return false;
 			}
-			if (colors[g[val][i]] == 0) {
-				if (col == 1) {
-					colors[g[val][i]] = 2;
+			if (colors[u] == 0) {
+				if (colors[cur] == 1) {
+					colors[u] = 2;
 				} else {
-					colors[g[val][i]] = 1;
+					colors[u] = 1;
 				}
-				q.push({g[val][i] , colors[g[val][i]] });
+				q.push(u);
 			}
 		}
 		q.pop();
@@ -45,6 +44,8 @@ int main() {
 		v--;
 		g[u].push_back(v);
 	}
+	cout << (isBipartite(0) ? "YES\n" : "NO\n");
+
 
 	for (int i = 0; i < m; i++) {
 		cout << colors[i] << " ";
