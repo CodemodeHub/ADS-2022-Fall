@@ -16,14 +16,14 @@ int search(string s1, string s2, string pattern, int q = 1e9 + 7, int d = 31) {
 
 	int sz = min(s1.size(), s2.size());
 	for (i = 0; i <= sz - pattern.size(); i++) {
-		if (p == t && p == tt)
+		if (p == t && p == tt) 
 			ans.push_back(i);
 
 		if (i < sz - pattern.size()) {
 			t = (d * (t - s1[i] * h) + s1[i + pattern.size()]) % q;
 			tt = (d * (tt - s2[i] * h) + s2[i + pattern.size()]) % q;
-			if (t < 0) t += q;
-			if (tt < 0) tt += q;
+			// if (t < 0) t += q;
+			// if (tt < 0) tt += q;
 		}
 	}
 	return ans.size();

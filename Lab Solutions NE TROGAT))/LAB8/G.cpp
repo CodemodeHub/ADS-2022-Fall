@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> search(string s, string pattern, int q = 1e9 + 7, int d = 31) {
+int search(string s, string pattern, int q = 1e9 + 7, int d = 31) {
 	int p = 0, t = 0, h = 1, i, j;
 	vector<int> ans;
 	for (i = 0; i < pattern.size() - 1; i++)
@@ -39,6 +39,8 @@ int main() {
 	while (n--) {
 		int a, b;
 		cin >> a >> b;
+		a--; b--;
+		cout << search(s, s.substr(a, b - a + 1)) << "\n";
 	}
 
 	return 0;
