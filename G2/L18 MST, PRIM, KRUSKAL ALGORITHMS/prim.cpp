@@ -29,7 +29,7 @@ int main() {
 				v = j;
 			}
 		}
-		if (min_e[v] >= INF) {
+		if (min_e[v] == INF) {
 			cout << "NO MST!";
 			return 0;
 		}
