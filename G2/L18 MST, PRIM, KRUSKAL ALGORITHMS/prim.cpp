@@ -3,6 +3,7 @@ using namespace std;
 vector<vector<int> > g;
 vector<bool> visited;
 vector<int> p, min_e;
+int ans = 0;
 const int INF = 1e9;
 
 int main() {
@@ -44,5 +45,6 @@ int main() {
 			}
 		}
 	}
+	cout << ans;
 	return 0;
 }
