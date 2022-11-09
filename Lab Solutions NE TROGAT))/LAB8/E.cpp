@@ -2,9 +2,10 @@
 using namespace std;
 #define ull unsigned long long
 int p = 1;
-char decrypt(int n, int mul = 2) {
+char decrypt(int n) {
 	char ans = (n / p) + 97;
-	p *= mul;
+	p <<= 1;
+	// p *= 2;
 	return ans;
 }
 

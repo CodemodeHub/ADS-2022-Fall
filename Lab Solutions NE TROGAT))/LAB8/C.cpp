@@ -24,18 +24,12 @@ vector<int> search(string s, string pattern, int q = 1e9 + 7, int d = 31) {
 	}
 
 	for (i = 0; i <= s.size() - pattern.size(); i++) {
-		if (p == t) {
-			for (j = 0; j < pattern.size(); j++) {
-				if (s[i + j] != pattern[j]) break;
-			}
-			if (j == pattern.size()) {
-				ans.push_back(i);
-			}
-		}
-
+		if (p == t)
+			ans.push_back(i);
+		
 		if (i < s.size() - pattern.size()) {
 			t = (d * (t - s[i] * h) + s[i + pattern.size()]) % q;
-			if (t < 0) t += q;
+			// if (t < 0) t += q;
 		}
 	}
 	return ans;
@@ -54,9 +48,9 @@ int main() {
 	// string hashed_s = hash_f(s);
 	vector<bool> visited(n);
 	for (int i = 0; i < n; i++) {
-		auto occurences = search(s, v[i]);
+		vector<int> occurences = search(s, v[i]);
 		for (auto j : occurences) {
-			for (int pos = j; pos < v[i].size() + j; pos++) {
+			for (int pos = j; pos < j + v[i].size(); pos++) {
 				visited[pos] = true;
 			}
 		}

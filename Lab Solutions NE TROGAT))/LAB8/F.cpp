@@ -2,7 +2,7 @@
 using namespace std;
 
 int distinctSubsts(string s) {
-	unordered_set<string> us;
+	set<string> us;
 	for (int i = 0; i < s.size(); i++) {
 		string ss = "";
 		for (int j = i; j < s.size(); j++) {
