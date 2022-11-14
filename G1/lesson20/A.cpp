@@ -3,7 +3,7 @@ using namespace std;
 
 string a, b;
 
-vector<int> prefix_function (string s) { // O
+vector<int> prefix_function (string s) {
 	int n = (int) s.length();
 	vector<int> pi (n);
 	for (int i = 1; i < n; ++i) {
