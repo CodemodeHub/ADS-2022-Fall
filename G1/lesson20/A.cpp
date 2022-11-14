@@ -30,7 +30,7 @@ bool check(int x) {
 
 int main() {
     cin >> a >> b;
-    int l = 1, r = min(a.size(), b.size());
+    int l = 1, r = max(a.size(), b.size());
     bool ok = false;
     while(l < r) {
         int m = (l + r) / 2;
