@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 vector<int> prefixFunction(string s) {
@@ -14,6 +13,33 @@ vector<int> prefixFunction(string s) {
 }
 
 int main() {
-	
+	string cityKenta;
+	int n;
+	cin >> cityKenta >> n;
+	cityKenta[0] += 32;
+	vector<string> myCities(n);
+	for (int i = 0; i < n; i++) {
+		cin >> myCities[i];
+		myCities[i][0] += 32;
+	}
+	int maxi = -1;
+	vector<string> ans;
+	for (int i = 0; i < myCities.size(); i++) {
+		string concat = myCities[i] + cityKenta;
+		vector<int> pi = prefixFunction(concat);
+		int longest = pi.back();
+		if (maxi < longest) {
+			maxi = longest;
+			ans.clear();
+			ans.push_back(myCities[i]);
+		} else if (maxi == longest) {
+			ans.push_back(myCities[i]);
+		}
+	}
+	cout << ans.size() << "\n";
+	for (int i = 0; i < ans.size(); i++) {
+		ans[i][0] -= 32;
+		cout << ans[i] << "\n";
+	}
 	return 0;
 }

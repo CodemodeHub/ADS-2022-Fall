@@ -1,8 +1,8 @@
 Kokshetau
-5
-Uralsk uralskkokshetau
-Tauemel tauemelkokshetau
-Tauelsiz tauelsizkokshetau
-Uzynagash
+6
 Astana
+Tauemel
+Tainan
 Almaty
+Budapest
+Taubulak
