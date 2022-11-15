@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 vector<int> prefixFunction(string s) {
@@ -12,33 +13,34 @@ vector<int> prefixFunction(string s) {
 	return pi;
 }
 
-vector<int> KMP(string txt, string pat) {
-	vector<int> ans;
+bool KMP(string txt, string pat) {
 	string concat = pat + '#' + txt;
 	vector<int> pi = prefixFunction(concat);
 	for (int i = pat.size() + 1; i < concat.size(); i++) {
 		if (pi[i] == pat.size()) {
-			ans.push_back(i - 2 * pat.size());
+			return true;
 		}
 	}
-	return ans;
+	return false;
 }
 
 int main() {
-	string s;
-	cin >> s;
-	int cnt = 0;
-	for (int i = 1; i < s.size(); i++) {
-		for (int j = i + 1; j < s.size(); j++) {
-			string a, b, c;
-			a = s.substr(0, i);
-			b = s.substr(i, j - i);
-			c = s.substr(j, s.size() - j + 1);
-			cout << a << " " << b << " " << c << endl;
-			if (a == b) cnt++;
-		}
+	string s, t;
+	cin >> s >> t;
+	string OG = s;
+	int cnt = 1;
+	while (s.size() < t.size()) {
+		s += OG;
+		cnt++;
 	}
-	cout << cnt;
-
+	if (KMP(s, t)) {
+		cout << cnt;
+		return 0;
+	}
+	if (KMP(s + OG, t)) {
+		cout << ++cnt;
+		return 0;
+	}
+	cout << -1;
 	return 0;
 }
