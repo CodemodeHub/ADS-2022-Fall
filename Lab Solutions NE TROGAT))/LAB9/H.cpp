@@ -12,7 +12,7 @@ vector<int> prefixFunction(string s) {
 	return pi;
 }
 
-vector<int> findSubstrings(string txt, string pat) {
+vector<int> KMP(string txt, string pat) {
 	vector<int> ans;
 	string concat = pat + '#' + txt;
 	vector<int> pi = prefixFunction(concat);

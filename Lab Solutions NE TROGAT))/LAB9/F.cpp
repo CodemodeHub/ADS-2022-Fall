@@ -13,7 +13,7 @@ vector<int> prefixFunction(string s) {
 	return pi;
 }
 
-vector<int> findSubstrings(string txt, string pat) {
+vector<int> KMP(string txt, string pat) {
 	vector<int> ans;
 	string concat = pat + '#' + txt;
 	vector<int> pi = prefixFunction(concat);
@@ -28,7 +28,7 @@ vector<int> findSubstrings(string txt, string pat) {
 int main() {
 	string s, t;
 	cin >> s >> t;
-	vector<int> indices = findSubstrings(s, t);
+	vector<int> indices = KMP(s, t);
 	cout << indices.size() << "\n";
 	for (auto i : indices) {
 		cout << i + 1 << " ";

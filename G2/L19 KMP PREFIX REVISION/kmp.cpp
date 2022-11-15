@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 vector<int> prefixFunction(string s) {
@@ -12,7 +13,7 @@ vector<int> prefixFunction(string s) {
 	return pi;
 }
 
-vector<int> KMP(string txt, string pat) {
+vector<int> findSubstrings(string txt, string pat) {
 	vector<int> ans;
 	string concat = pat + '#' + txt;
 	vector<int> pi = prefixFunction(concat);
@@ -25,16 +26,12 @@ vector<int> KMP(string txt, string pat) {
 }
 
 int main() {
-
-	string s, t;
-	cin >> s >> t;
-	t += t;
-	vector<int> indices = KMP(t, s);
-	if (indices.size() == 0) {
-		cout << -1;
-	} else {
-		cout << indices[0];
+	string txt = "ABCABD";
+	string pat = "AB";
+	vector<int> indices = findSubstrings(txt, pat);
+	for (auto i : indices) {
+		cout << i << " ";
 	}
-
+	// O(m + n) m - txt.size(), n - pat.size()
 	return 0;
 }

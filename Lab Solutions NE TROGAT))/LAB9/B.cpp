@@ -12,7 +12,7 @@ vector<int> prefixFunction(string s) {
 	return pi;
 }
 
-bool findSubstrings(string txt, string pat, int k) {
+bool KMP(string txt, string pat, int k) {
 	int cnt = 0;
 	string concat = pat + '#' + txt;
 	vector<int> pi = prefixFunction(concat);
@@ -29,7 +29,7 @@ int main() {
 	string s, t;
 	int k;
 	cin >> s >> k >> t;
-	if (findSubstrings(t, s, k)) {
+	if (KMP(t, s, k)) {
 		cout << "YES";
 	} else {
 		cout << "NO";

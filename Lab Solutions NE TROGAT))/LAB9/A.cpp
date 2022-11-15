@@ -16,7 +16,7 @@ int main() {
 
 	string s, t;
 	cin >> s >> t;
-	vector<int> pi_t = prefixFunction(t);
+	vector<int> pi = prefixFunction(t);
 	int i = 0, j = 0;
 	while (i < s.size()) {
 		while (j < t.size() && s[(i + j) % s.size()] == t[j]) {
@@ -26,8 +26,8 @@ int main() {
 			cout << (i + j - 1) / s.size() + 1;
 			return 0;
 		}
-		j = pi_t[j];
-		i += max(1, j - pi_t[j]);
+		j = pi[j];
+		i += max(1, j - pi[j]);
 	}
 	cout << -1;
 
