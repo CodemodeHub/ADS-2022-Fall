@@ -1,4 +1,1 @@
 ababababcx
-
-abab + abab + cx
-abab#abab
