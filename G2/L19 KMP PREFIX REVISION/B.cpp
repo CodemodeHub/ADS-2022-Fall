@@ -13,23 +13,27 @@ vector<int> prefixFunction(string s) {
 	return pi;
 }
 
-vector<int> KMP(string txt, string pat) {
-	vector<int> ans;
+bool KMP(string txt, string pat, int k) {
+	int cnt = 0;
 	string concat = pat + '#' + txt;
 	vector<int> pi = prefixFunction(concat);
 	for (int i = pat.size() + 1; i < concat.size(); i++) {
 		if (pi[i] == pat.size()) {
-			ans.push_back(i - 2 * pat.size());
+			// cnt++;
+			if (++cnt == k) return true;
 		}
 	}
-	return ans;
+	return false;
 }
 
 int main() {
-	string s = "abcabcdab";
-	string t = "ab";
-	for (int i : KMP(s, t)) {
-		cout << i << " ";
+	string s, t;
+	int k;
+	cin >> t >> k >> s;
+	if (KMP(s, t, k)) {
+		cout << "YES";
+	} else {
+		cout << "NO";
 	}
 	return 0;
 }

@@ -26,10 +26,19 @@ vector<int> KMP(string txt, string pat) {
 }
 
 int main() {
-	string s = "abcabcdab";
-	string t = "ab";
-	for (int i : KMP(s, t)) {
-		cout << i << " ";
+	int q, k;
+	string s;
+	cin >> q;
+	while (q--) {
+		cin >> s >> k;
+		string original = s;
+		vector<int> pi = prefixFunction(original);
+		string toAdd = original.substr(pi.back(), original.size());
+		while (KMP(s, original).size() < k) {
+			s += toAdd;
+		}
+		cout << s.size() << "\n";
 	}
 	return 0;
 }
+// O(Q * (|S| + |OG|) * Log(K))
