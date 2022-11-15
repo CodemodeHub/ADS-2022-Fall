@@ -11,7 +11,7 @@ int main() {
 		a = s.substr(0, x);
 		b = s.substr(x, x);
 		c = s.substr(2 * x, s.size() - 2 * x);
-		cout << a << " " << b << " " << c << endl;
+		// cout << a << " " << b << " " << c << endl;
 		if (a == b) cnt++;
 		x++;
 	}
