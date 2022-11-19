@@ -15,7 +15,7 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		int u, v, w;
 		cin >> u >> v >> w;
-		g[u].push_back({v, w});
+		g[u].push_back({ v, w });
 	}
 	cin >> s >> e;
 	d[s] = 0;
@@ -38,7 +38,7 @@ int main() {
 		}
 	}
 	// for (int i : d) cout << i << " ";
-	// for (int i : p) cout << i << " ";
+	for (int i : p) cout << i << " ";
 	path.push_back(e);
 	for (int i = e; i != s; i = p[i]) {
 		path.push_back(p[i]);
@@ -47,4 +47,4 @@ int main() {
 	reverse(path.begin(), path.end());
 	for (auto i : path) cout << i << " ";
 
-}
+} // O(|V|^2 * |E|)
