@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 vector<vector<int> > g;
-vector<bool> vis;
-vector<int> topsort_v, colors; // 0 unvis, 1 red, 2 blue
+vector<bool> visited;
+vector<int> topsortVector, colors;
 
 bool detectCycle(int v) {
 	colors[v] = 1;
@@ -15,19 +16,19 @@ bool detectCycle(int v) {
 			if (detectCycle(u)) return true;
 		}
 	}
-	colors[v] = a2;
+	colors[v] = 2;
 	return false;
 }
 
 void topsort(int v) {
-	vis[v] = true;
+	visited[v] = true;
 	for (int i = 0; i < g[v].size(); i++) {
 		int u = g[v][i];
-		if (!vis[u]) {
+		if (!visited[u]) {
 			topsort(u);
 		}
 	}
-	topsort_v.push_back(v);
+	topsortVector.push_back(v);
 }
 
 int main() {
@@ -35,12 +36,11 @@ int main() {
 	cin >> m >> n;
 	colors.resize(m);
 	g.resize(m);
-	vis.resize(m);
+	visited.resize(m);
 	for (int i = 0; i < n; i++) {
 		int u, v;
 		cin >> u >> v;
-		u--;
-		v--;
+		u--; v--;
 		g[u].push_back(v);
 	}
 	bool hasCycle = false;
@@ -53,13 +53,12 @@ int main() {
 	if (!hasCycle) {
 		cout << "Possible\n";
 		for (int i = 0; i < m; i++) {
-			if (!vis[i]) {
+			if (!visited[i]) {
 				topsort(i);
 			}
 		}
-		reverse(topsort_v.begin(), topsort_v.end());
-		for (auto i : topsort_v) {
-			cout << i + 1 << " ";
+		for (int i = topsortVector.size() - 1; i >= 0; i--) {
+			cout << topsortVector[i] + 1 << " ";
 		}
 	} else {
 		cout << "Impossible";
