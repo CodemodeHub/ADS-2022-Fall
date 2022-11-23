@@ -35,13 +35,12 @@ int main() {
 		if (num == b) {
 			cout << step << "\n";
 			vector<int> v;
-			for (int i = b; p[i] != a; i = p[i]) {
+			for (int i = b; i != a; i = p[i]) {
 				v.push_back(p[i]);
 			}
 			for (int i = v.size() - 1; i >= 0; i--) {
 				cout << v[i] << " ";
 			}
-			cout << b;
 			return 0;
 		}
 
