@@ -56,21 +56,21 @@ int main() {
 	// 	}
 	// 	cout << "\n";
 	// }
-	vector<int> path;
-	for (int i = end; i != -1; i = p[start][i]) {
-		path.push_back(i);
-	}
-	for (int i = path.size() - 1; i >= 0; i--) {
-		cout << path[i] + 1 << ' ';
-	}
-
-
-	// for (int i = 0; i < m; i++) {
-	// 	for (int j = 0; j < m; j++) {
-	// 		cout << d[i][j] << " ";
-	// 	}
-	// 	cout << '\n';
+	// vector<int> path;
+	// for (int i = end; i != -1; i = p[start][i]) {
+	// 	path.push_back(i);
 	// }
+	// for (int i = path.size() - 1; i >= 0; i--) {
+	// 	cout << path[i] + 1 << ' ';
+	// }
+
+
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < m; j++) {
+			cout << d[i][j] << " ";
+		}
+		cout << '\n';
+	}
 
 	return 0;
 }
